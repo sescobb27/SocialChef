@@ -28,7 +28,7 @@ module.exports = function(config) {
       'js/libs/ember-1.4.0.js',
       'js/libs/handlebars-1.1.2.js',
       'js/libs/jquery-1.10.2.js',
-      // END LIBS
+      // END LIB
     ],
 
 
