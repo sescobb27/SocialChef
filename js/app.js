@@ -1,7 +1,5 @@
-SocialChef = Ember.Application.create();
-
-SocialChef.Router.map(function() {
-  // put your routes here
+SocialChef = Ember.Application.create({
+  LOG_TRANSITIONS: true
 });
 
 SocialChef.IndexRoute = Ember.Route.extend({
