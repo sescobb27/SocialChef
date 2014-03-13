@@ -1,10 +1,10 @@
-App = Ember.Application.create();
+SocialChef = Ember.Application.create();
 
-App.Router.map(function() {
+SocialChef.Router.map(function() {
   // put your routes here
 });
 
-App.IndexRoute = Ember.Route.extend({
+SocialChef.IndexRoute = Ember.Route.extend({
   model: function() {
     return ['red', 'yellow', 'blue'];
   }
