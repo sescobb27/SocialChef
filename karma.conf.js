@@ -29,6 +29,11 @@ module.exports = function(config) {
       'js/controllers/*.js',
       'js/models/*.js',
       'js/test/*.js',
+
+      // TEMPLATES
+      // END TEMPLATES
+      "js/templates/*.handlebars",
+      "js/templates/*.hbs"
     ],
 
 
@@ -41,7 +46,8 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-
+      "**/*.handlebars": 'ember',
+      "**/*.hbs": 'ember'
     },
 
 
@@ -72,6 +78,11 @@ module.exports = function(config) {
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
     browsers: ['PhantomJS'],
 
+    plugins: [
+        'karma-qunit',
+        'karma-ember-preprocessor',
+        'karma-phantomjs-launcher'
+   ],
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits

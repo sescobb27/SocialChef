@@ -1,0 +1,16 @@
+{
+  "name": "SocialChef",
+  "version": "0.0.1",
+
+  "devDependencies": {
+    "phantomjs": "1.9",
+    "karma": "~0.10.2",
+    "karma-phantomjs-launcher": "~0.1.2",
+    "karma-qunit": "~0.1.1",
+    "karma-ember-preprocessor": "~1.4.0"
+  },
+
+  "scripts": {
+     "test": "./node_modules/.bin/karma start --browsers PhantomJS --single-run"
+  }
+}
