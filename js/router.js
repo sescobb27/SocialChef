@@ -2,7 +2,7 @@ SocialChef.Router.map(function() {
   this.resource(  'users', { path: '/chefs'} );
   this.resource(  'user', { path: 'users/:username'} );
   this.resource( 'products', function () {
-      this.resource( 'product', { path: ':name' });
+      this.resource( 'product', { path: ':name' } );
   });
   // this.route("about");
   // this.route("favorites", { path: "/favs" });
