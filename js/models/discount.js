@@ -8,6 +8,8 @@ SocialChef.Discount = Ember.Object.extend({
   start_date: null,
   end_date: null,
   created_at: null,
+  picture: null,
+  url: null,
   // ==========================================================================
   // END ATTRIBUTES
   // ==========================================================================
