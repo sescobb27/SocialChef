@@ -31,6 +31,7 @@ var products = [
         price: 9900,
         category: 'Pasta',
         description: 'Descripcion del plato 1.',
+        cheff:'Pablo',
         image: 'images/gourmet1.jpg'
 
     },
@@ -40,7 +41,8 @@ var products = [
         price: 249,
         category: 'Carne',
         description: 'Descripcion del plato 2.',
-    image: 'images/gourmet2.jpg'
+        cheff:'Pedro',
+        image: 'images/gourmet2.jpg'
     },
     {
         id: 3,
@@ -48,6 +50,7 @@ var products = [
         price: 499,
         category: 'Postre',
         description: 'Descripcion del plato 3.',
+        cheff:'Jacinto',
         image: 'images/gourmet3.jpg'
 
     }
