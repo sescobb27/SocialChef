@@ -97,18 +97,21 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   var buffer = '', helper, options, escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing;
 
 
-  data.buffer.push("<div class=\"container\" id=\"products-search\">\n    <div class=\"row\">\n        <form ");
+  data.buffer.push("<div class=\"container\">\n    <div class=\"row\">\n        <form ");
   data.buffer.push(escapeExpression(helpers.action.call(depth0, "search", {hash:{
     'on': ("submit")
   },hashTypes:{'on': "STRING"},hashContexts:{'on': depth0},contexts:[depth0],types:["STRING"],data:data})));
-  data.buffer.push(" class=\"form-horizontal form-group\" method=\"get\" accept-charset=\"utf-8\">\n            ");
+  data.buffer.push(" class=\"form-horizontal form-group\" method=\"get\" accept-charset=\"utf-8\" id=\"productSeachForm\">\n            ");
   data.buffer.push(escapeExpression((helper = helpers.input || (depth0 && depth0.input),options={hash:{
     'type': ("search"),
+    'id': ("products-search"),
     'placeholder': ("Buscador de Comidas"),
     'value': ("search_query"),
     'class': ("form-control")
-  },hashTypes:{'type': "STRING",'placeholder': "STRING",'value': "ID",'class': "STRING"},hashContexts:{'type': depth0,'placeholder': depth0,'value': depth0,'class': depth0},contexts:[],types:[],data:data},helper ? helper.call(depth0, options) : helperMissing.call(depth0, "input", options))));
-  data.buffer.push("\n        </form>\n    </div>\n</div>");
+  },hashTypes:{'type': "STRING",'id': "STRING",'placeholder': "STRING",'value': "ID",'class': "STRING"},hashContexts:{'type': depth0,'id': depth0,'placeholder': depth0,'value': depth0,'class': depth0},contexts:[],types:[],data:data},helper ? helper.call(depth0, options) : helperMissing.call(depth0, "input", options))));
+  data.buffer.push("\n            <button class=\"submit\" ");
+  data.buffer.push(escapeExpression(helpers.action.call(depth0, "search", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["STRING"],data:data})));
+  data.buffer.push(">Buscar</button>\n        </form>\n    </div>\n</div>");
   return buffer;
   
 });

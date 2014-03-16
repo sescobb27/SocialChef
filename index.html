@@ -141,8 +141,21 @@
         <script type="text/x-handlebars" id="components/products-search">
             <div class="container">
                 <div class="row">
-                    <form {{action 'search' on='submit'}} class="form-horizontal form-group" method="get" accept-charset="utf-8" id="productSeachForm">
-                        {{input type="search" id="products-search" placeholder="Buscador de Comidas" value=search_query class="form-control"}}
+                    <form {{action 'search' on='submit'}}
+                                class="form-horizontal form-group"
+                                method="get"
+                                accept-charset="utf-8"
+                                id="productSeachForm"
+                                role="form">
+
+                        <div class="col-xs-10">
+                            {{input type="search" id="products-search"
+                                placeholder="Buscador de Comidas"
+                                value=search_query
+                                class="form-control col-xs-4"}}
+
+                        </div>
+                        <button class="submit btn btn-primary" {{action "search"}}>Buscar</button>
                     </form>
                 </div>
             </div>
@@ -161,7 +174,7 @@
     <script src="js/controllers/application_controller.js"></script>
     <script src="js/components.js"></script>
     <script src="js/router.js"></script>
-    <!-- to activate the test runner, add the "?test" query string parameter
-    <script src="tests/runner.js"></script>-->
+    <!-- to activate the test runner, add the "?test" query string parameter -->
+    <!-- <script src="tests/runner.js"></script> -->
   </body>
 </html>
