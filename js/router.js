@@ -1,23 +1,8 @@
-<<<<<<< HEAD
-
-SocialChef.Router.map(function() {
-    this.route('productos');
-
-
-});
-SocialChef.IndexRoute = Ember.Route.extend({
-    model: function() {
-        return ['red', 'yellow', 'blue'];
-    }});
-
-
-=======
 SocialChef.Router.map(function() {
   this.resource(  'users', { path: '/chefs'} );
   this.resource(  'user', { path: 'users/:username'} );
-  this.resource( 'products', function () {
-      this.resource( 'product', { path: ':name' } );
-  });
+    this.resource('products');
+    this.resource('product', { path: '/products/:title' });
   // this.route("about");
   // this.route("favorites", { path: "/favs" });
 });
@@ -44,6 +29,7 @@ var products = [
         id: 1,
         title: 'Plato 1',
         price: 9900,
+        category: 'Pasta',
         description: 'Descripcion del plato 1.',
         image: 'images/gourmet1.jpg'
 
@@ -52,6 +38,7 @@ var products = [
         id: 2,
         title: 'Plato 2',
         price: 249,
+        category: 'Carne',
         description: 'Descripcion del plato 2.',
     image: 'images/gourmet2.jpg'
     },
@@ -59,6 +46,7 @@ var products = [
         id: 3,
         title: 'Plato 3',
         price: 499,
+        category: 'Postre',
         description: 'Descripcion del plato 3.',
         image: 'images/gourmet3.jpg'
 
@@ -76,4 +64,3 @@ SocialChef.ProductRoute = Ember.Route.extend({
         return products.findBy('name', params.name);
     }
 });
->>>>>>> d4d4ed6642232ce21c7b9430e8f5e21a0ec87075
