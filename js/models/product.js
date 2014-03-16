@@ -4,6 +4,7 @@ SocialChef.Product = Ember.Object.extend({
   // ==========================================================================
   name: null,
   price: null,
+  category:null,
   rate: 0.0,
   delivery_time: null,
   disponibility_time: null,
