@@ -4,6 +4,13 @@ SocialChef.Router.map(function() {
   this.resource( 'products', function () {
       this.resource( 'product', { path: ':name' } );
   });
+  this.resource( "about" );
+  this.resource( "services" );
+  this.resource( "contact" );
+  this.resource( "sign_up" );
+
+
+
   // this.route("about");
   // this.route("favorites", { path: "/favs" });
 });

@@ -31,37 +31,45 @@
               <a class="navbar-brand" href="#">SocialChef</a>
             </div>
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
               <ul class="nav navbar-nav">
-                <li><a href="#about">About</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li><a href="#login">Login</a></li>
-                <li><a href="#signup">Sign Up</a></li>
-                <li> {{#link-to 'products'}} Products {{/link-to}} </li>
+                <li>{{#link-to "about"}}About{{/link-to}}</li>
+                <li>{{#link-to "services"}}Services{{/link-to}}</li>
+                <li> {{#link-to "contact"}}Contact{{/link-to}}</li>
+                <li> {{#link-to "sign_up"}}Sign Up {{/link-to}} </li>
+                <li> {{#link-to "products"}} Products {{/link-to}} </li>
               </ul>
-            </div>{{!<!-- /.navbar-collapse -->}}
-          </div>{{!<!-- /.container -->}}
+            </div>
+          </div>
         </nav>
         <div class="container">
-          <div class="row">
-            <div class="col-md-3">
-              <p class="lead">Shop Name</p>
-              <div class="list-group">
-                <a href="#" class="list-group-item">New</a>
-                <a href="#" class="list-group-item">Popular</a>
-                <a href="#" class="list-group-item">Categories</a>
+            <div class="row">
+              {{ products-search search="search"}}
+              <div class="col-md-3">
+                  <p class="lead">Shop Name</p>
+                  <div class="list-group">
+                      {{#link-to "" class="list-group-item"}} New {{/link-to}}
+                      {{#link-to "" class="list-group-item"}} Popular {{/link-to}}
+                      {{#link-to "" class="list-group-item"}} Categories {{/link-to}}
+                  </div>
               </div>
+              {{ add-banner }}
             </div>
-            {{ add-banner }}
-          </div>
-        </div>{{!<!-- /.container -->}}
-        {{ products-search search="search"}}
+        </div>
         <div class="container">
             <div class="col-md-9">
                 {{outlet}}
             </div>
+        </div>
+        <div class="container">
+          <hr>
+          <footer>
+              <div class="row">
+                  <div class="col-lg-12">
+                      <p>Copyright &copy; SocialChef 2014</p>
+                  </div>
+                </div>
+            </footer>
         </div>
     </script>
 
@@ -175,17 +183,6 @@
           </div>
  -->
 
-    <div class="container">
-      <hr>
-      <footer>
-        <div class="row">
-          <div class="col-lg-12">
-            <p>Copyright &copy; SocialChef 2014</p>
-          </div>
-        </div>
-      </footer>
-    </div><!-- /.container -->
-
     <!-- TEMPLATES -->
         <script type="text/x-handlebars" id="products">
             <div class="row">
@@ -275,7 +272,6 @@
     <script src="js/controllers/application_controller.js"></script>
     <script src="js/components.js"></script>
     <script src="js/router.js"></script>
-    <script src="js/controllers/ProductsController.js"></script>
     <!-- to activate the test runner, add the "?test" query string parameter -->
     <script src="tests/runner.js"></script>
   </body>
