@@ -1,9 +1,10 @@
 SocialChef.Router.map(function() {
-  this.resource(  'users', { path: '/chefs'} );
-  this.resource(  'user', { path: 'users/:username'} );
-  this.resource( 'products', function () {
-      this.resource( 'product', { path: ':name' } );
-  });
+    this.resource( 'index', { path: '/' } );
+    this.resource( 'users', { path: '/chefs'} );
+    this.resource( 'user', { path: 'users/:username'} );
+    this.resource( 'products', function () {
+        this.resource( 'product', { path: ':name' } );
+    });
 });
 
 SocialChef.UsersRoute = Ember.Route.extend({
