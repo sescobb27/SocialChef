@@ -15,6 +15,13 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
+      // LIBS
+      'js/libs/jquery-1.10.2.js',
+      'js/libs/bootstrap.min.js',
+      'js/libs/handlebars-1.1.2.js',
+      'js/libs/ember-1.4.0.js',
+      // END LIB
+
       'js/*.js',
       'js/app.js',
       'js/router.js',
@@ -23,12 +30,10 @@ module.exports = function(config) {
       'js/models/*.js',
       'js/test/*.js',
 
-      // LIBS
-      'js/libs/bootstrap.min.js',
-      'js/libs/ember-1.4.0.js',
-      'js/libs/handlebars-1.1.2.js',
-      'js/libs/jquery-1.10.2.js',
-      // END LIB
+      // TEMPLATES
+      // END TEMPLATES
+      "js/templates/*.handlebars",
+      "js/templates/*.hbs"
     ],
 
 
@@ -41,7 +46,8 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-
+      "**/*.handlebars": 'ember',
+      "**/*.hbs": 'ember'
     },
 
 
@@ -61,7 +67,7 @@ module.exports = function(config) {
 
     // level of logging
     // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
-    logLevel: config.LOG_DEBUG,
+    logLevel: config.LOG_ERROR,
 
 
     // enable / disable watching file and executing tests whenever any file changes
@@ -70,11 +76,16 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['PhantomJS', 'Firefox', 'Chrome'],
+    browsers: ['PhantomJS'],
 
+    plugins: [
+        'karma-qunit',
+        'karma-ember-preprocessor',
+        'karma-phantomjs-launcher'
+   ],
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
-    singleRun: true
+    singleRun: false
   });
 };

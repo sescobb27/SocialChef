@@ -1,4 +1,5 @@
 SocialChef = Ember.Application.create({
+<<<<<<< HEAD
     LOG_TRANSITIONS: true
 
 });
@@ -50,3 +51,7 @@ SocialChef.products = [
 ];
 
 
+=======
+  LOG_TRANSITIONS: true
+});
+>>>>>>> d4d4ed6642232ce21c7b9430e8f5e21a0ec87075
