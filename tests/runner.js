@@ -1,4 +1,3 @@
-if (window.location.search.indexOf("?test") !== -1) {
   document.write(
     '<div id="qunit"></div>' +
     '<div id="qunit-fixture"></div>' +
@@ -9,5 +8,4 @@ if (window.location.search.indexOf("?test") !== -1) {
     '<link rel="stylesheet" href="tests/vendor/qunit-1.12.0.css">' +
     '<script src="tests/vendor/qunit-1.12.0.js"></script>' +
     '<script src="tests/tests.js"></script>'
-  )
-}
+  );

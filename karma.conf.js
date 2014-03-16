@@ -17,23 +17,26 @@ module.exports = function(config) {
     files: [
       // LIBS
       'js/libs/jquery-1.10.2.js',
-      'js/libs/bootstrap.min.js',
       'js/libs/handlebars-1.1.2.js',
       'js/libs/ember-1.4.0.js',
+      'js/libs/bootstrap.min.js',
       // END LIB
 
-      'js/*.js',
+      // TEMPLATES
+      "js/templates/components/*.handlebars",
+      "js/templates/components/*.hbs",
+      "js/templates/components/templates.js",
+      // END TEMPLATES
+
       'js/app.js',
+      'tests/runner.js',
+      'tests/tests.js',
       'js/router.js',
-      'js/components/*.js',
       'js/controllers/*.js',
+      'js/components.js',
+      'js/components/*.js',
       'js/models/*.js',
       'js/test/*.js',
-
-      // TEMPLATES
-      // END TEMPLATES
-      "js/templates/*.handlebars",
-      "js/templates/*.hbs"
     ],
 
 

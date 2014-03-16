@@ -1,31 +1,56 @@
 // in order to see the app running inside the QUnit runner
-App.rootElement = '#ember-testing';
+SocialChef.rootElement = '#ember-testing';
 
 // Common test setup
-App.setupForTesting();
-App.injectTestHelpers();
+SocialChef.setupForTesting();
+SocialChef.injectTestHelpers();
 
 // common QUnit module declaration
 module("Integration tests", {
   setup: function() {
     // before each test, ensure the application is ready to run.
-    Ember.run(App, App.advanceReadiness);
+    Ember.run(SocialChef, SocialChef.advanceReadiness);
   },
 
   teardown: function() {
     // reset the application state between each test
-    App.reset();
+    SocialChef.reset();
   }
 });
 
 // QUnit test case
-test("/", function() {
-  // async helper telling the application to go to the '/' route
-  visit("/");
+test("I should see  SocialChef as appname", function() {
+    SocialChef.reset();
+    visit("/").then( function () {
+        ok(find(".appname"));
+        var brand = document.getElementById("appname");
+        equal(brand.text, "SocialChef", "Error no SocialChef as appname: " + brand.text);
+    });
+});
 
-  // helper waiting the application is idle before running the callback
-  andThen(function() {
-    equal(find("h2").text(), "Welcome to Ember.js", "Application header is rendered");
-    equal(find("li").length, 3, "There are three items in the list");
-  });
+test('I should see a carousel in the index page',function() {
+    SocialChef.reset();
+    visit("/").then( function () {
+        ok(find(".add-banner"));
+        var carousel = find(".add-banner");
+        notEqual( carousel, null, "No carousel in index page: " + carousel );
+    });
+});
+
+test('I should see the Copyright all the time', function() {
+    SocialChef.reset();
+    assert = function () {
+        var copyright = find(".copyright");
+        notEqual( copyright, null, "No copyright on all views: " + copyright );
+    };
+    visit('/').then(assert);
+    visit('/products').then(assert);
+});
+
+test('I should see a row with products', function() {
+    SocialChef.reset();
+    visit("/products").then( function () {
+        var row = find(".products");
+        notEqual( row, null, "No row with products: "+row );
+    });
 });
