@@ -4,9 +4,9 @@ SocialChef.Router.map(function() {
     this.route('register');
     this.resource( 'index', { path: '/' } );
     this.resource( 'users', { path: '/chefs'} );
-    this.resource( 'user', { path: '/users/:username'} );
+    this.resource( 'user', { path: ':user_name'} );
     this.resource( 'products', function () {
-        this.resource( 'product', { path: '/products/:name' } );
+        this.resource( 'product', { path: ':product_name' } );
     });
 });
 
