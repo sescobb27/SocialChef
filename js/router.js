@@ -1,9 +1,12 @@
 SocialChef.Router.map(function() {
+    this.route('about');
+    this.route('login');
+    this.route('register');
     this.resource( 'index', { path: '/' } );
     this.resource( 'users', { path: '/chefs'} );
-    this.resource( 'user', { path: 'users/:username'} );
+    this.resource( 'user', { path: '/users/:username'} );
     this.resource( 'products', function () {
-        this.resource( 'product', { path: ':name' } );
+        this.resource( 'product', { path: '/products/:name' } );
     });
 });
 

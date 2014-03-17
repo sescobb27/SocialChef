@@ -33,11 +33,14 @@
             </div>
 
             <nav class="navbar-inner collapse navbar-collapse navbar-ex1-collapse">
-              <ul class="nav navbar-nav">
+              <ul class="nav navbar-nav navbar-right">
                 <li> {{#link-to "products"}} Products {{/link-to}} </li>
+                  <li> {{#link-to "about"}} About {{/link-to}} </li>
+                  <li> {{#link-to "login"}} Login {{/link-to}} </li>
+                  <li> {{#link-to "register"}} Register {{/link-to}} </li>
               </ul>
             </nav>
-          </div>
+          </nav>
         </nav>
         <div class="container">
             <div><h1>SocialChef</h1></div>
@@ -72,7 +75,7 @@
 
     <!-- TEMPLATES -->
         <script type="text/x-handlebars" id="products">
-            <div class="row" id="products">
+            <div class="row">
                 <div class="col-md-12">
                     <h1>Despliegue de todos los productos</h1>
                     {{#each product in model}}
@@ -81,7 +84,7 @@
                                     <img  {{bind-attr src='product.image'}}>
                                     <div class="caption">
                                         <h4 class="pull-right">$ {{product.price}}</h4>
-                                        <h4>{{#link-to 'product' product.name}}{{product.name}}{{/link-to}}</h4>
+                                        <h4>{{#link-to 'product' this class='btn btn-success' tagName='button'}}{{product.name}}{{/link-to}}</h4>
                                         <p>{{product.description}}</p>
                                     </div>
                                 </div>
@@ -177,6 +180,6 @@
     <script src="js/components.js"></script>
     <script src="js/router.js"></script>
     <!-- to activate the test runner, add the "?test" query string parameter -->
-    <!-- <script src="tests/runner.js"></script> -->
+    <!--<script src="tests/runner.js"></script>-->
   </body>
 </html>
