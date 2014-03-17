@@ -74,6 +74,30 @@
     </script>
 
     <!-- TEMPLATES -->
+        <script type="text/x-handlebars" id="login">
+            <div class="row">
+                <form {{action 'login' on='submit'}}
+                            class="form-horizontal form-group"
+                            method="post"
+                            accept-charset="utf-8"
+                            id="loginForm"
+                            role="form">
+
+                    <div class="col-xs-6">
+                        {{input type="search" id="user_name"
+                            placeholder="Usuario"
+                            value=user_name
+                            class="form-control col-xs-3"}}
+                        {{input type="password" id="user_password"
+                            placeholder="Contraseña"
+                            value=user_password
+                            class="form-control col-xs-3"}}
+                        <button class="submit btn btn-primary" {{action "login"}}>Aceptar</button>
+                    </div>
+                </form>
+            </div>
+        </script>
+
         <script type="text/x-handlebars" id="products">
             <div class="row">
                 <div class="col-md-12">
