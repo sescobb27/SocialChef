@@ -79,7 +79,7 @@
                                     <img  {{bind-attr src='product.image'}}>
                                     <div class="caption">
                                         <h4 class="pull-right">$ {{product.price}}</h4>
-                                        <h4>{{#link-to 'product' product.name}}{{product.title}}{{/link-to}}</h4>
+                                        <h4>{{#link-to 'product' product.name}}{{product.name}}{{/link-to}}</h4>
                                         <p>{{product.description}}</p>
                                     </div>
                                 </div>
@@ -175,6 +175,6 @@
     <script src="js/components.js"></script>
     <script src="js/router.js"></script>
     <!-- to activate the test runner, add the "?test" query string parameter -->
-    <!-- <script src="tests/runner.js"></script> -->
+    <script src="tests/runner.js"></script>
   </body>
 </html>

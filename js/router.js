@@ -27,7 +27,7 @@ SocialChef.IndexRoute = Ember.Route.extend({
 var products = [
     {
         id: 1,
-        title: 'Plato 1',
+        name: 'Plato 1',
         price: 9900,
         category: 'Pasta',
         description: 'Descripcion del plato 1.',
@@ -37,7 +37,7 @@ var products = [
     },
     {
         id: 2,
-        title: 'Plato 2',
+        name: 'Plato 2',
         price: 249,
         category: 'Carne',
         description: 'Descripcion del plato 2.',
@@ -46,7 +46,7 @@ var products = [
     },
     {
         id: 3,
-        title: 'Plato 3',
+        name: 'Plato 3',
         price: 499,
         category: 'Postre',
         description: 'Descripcion del plato 3.',
