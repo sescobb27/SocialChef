@@ -60,13 +60,17 @@ var products = [
 ];
 
 SocialChef.ProductsRoute = Ember.Route.extend({
-    model: function() {
-        return products;
+    setupController: function(productsController) {
+        console.log("Fetching Products");
+        Ember.$.getJSON("http://localhost:8080/service/products").then(function(products) {
+                productsController.set('content', products)
+        });
     }
 });
 
 SocialChef.ProductRoute = Ember.Route.extend({
     model: function (params) {
-        return products.findBy('name', params.name);
+        console.log("On Product Route: " + params);
+        // return this.store.find('product', params.id);
     }
 });

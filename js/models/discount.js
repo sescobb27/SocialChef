@@ -2,7 +2,6 @@ SocialChef.Discount = Ember.Object.extend({
   // ==========================================================================
   // ATTRIBUTES
   // ==========================================================================
-  id: DS.attr('number'),
   name:  DS.attr('string'),
   description:  DS.attr('string'),
   discountPercent: DS.attr('number', {defaultValue: 0.0}),

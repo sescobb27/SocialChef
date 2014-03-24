@@ -1,4 +1,4 @@
-<div class="row" id="products">
+<div class="row">
     <div class="col-md-12">
         <h1>Despliegue de todos los productos</h1>
         {{#each product in model}}
@@ -7,7 +7,7 @@
                         <img  {{bind-attr src='product.image'}}>
                         <div class="caption">
                             <h4 class="pull-right">$ {{product.price}}</h4>
-                            <h4>{{#link-to 'product' product.name}}{{product.name}}{{/link-to}}</h4>
+                            <h4>{{#link-to 'product' this class='btn btn-success' tagName='button'}}{{product.name}}{{/link-to}}</h4>
                             <p>{{product.description}}</p>
                         </div>
                     </div>

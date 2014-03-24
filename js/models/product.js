@@ -2,15 +2,15 @@ SocialChef.Product = DS.Model.extend({
   // ==========================================================================
   // ATTRIBUTES
   // ==========================================================================
-  id: DS.attr('number'),
   name: DS.attr('string'),
   price: DS.attr('number'),
   category: DS.attr('string'),
+  location: DS.attr('string'),
   rate: DS.attr('number', {defaultValue: 0.0}),
   description: DS.attr('string'),
-  delivery_time: DS.attr('date'),
-  disponibility_time: DS.attr('date'),
-  cheff: DS.belongsTo('user'),
+  deliveryTime: DS.attr('date'),
+  disponibilityTime: DS.attr('date'),
+  chef: DS.belongsTo('user', {embedded: 'load'}),
   image: DS.attr('string'),
   createdAt: DS.attr('date', {
     defaultValue: function() {
