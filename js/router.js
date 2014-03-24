@@ -8,6 +8,9 @@ SocialChef.Router.map(function() {
     this.resource( 'products', function () {
         this.resource( 'product', { path: ':product_name' } );
     });
+    this.resource('search', function(){
+        this.route('results', {path: ':query'});
+    });
 });
 
 SocialChef.UsersRoute = Ember.Route.extend({
@@ -58,6 +61,38 @@ var products = [
 
     }
 ];
+
+SocialChef.SearchRoute = Ember.Route.extend({
+
+});
+
+SocialChef.SearchResultsRoute = Ember.Route.extend({
+  // activate: function() {},
+  // deactivate: function() {},
+  // setupController: function(controller, model) {},
+  // renderTemplate: function() {},
+  // beforeModel: function() {},
+  // afterModel: function() {},
+
+  setupController: function(controller, model) {
+      var context = this;
+      console.log('Query: '+ model.query);
+      Ember.$.getJSON("http://localhost:8080/service/products/findby?key=category&search_value=carne")
+          .then(function(products) {
+                  controller.set('content', products);
+          });
+  }
+});
+
+
+SocialChef.SearchController = Ember.ArrayController.extend({
+    query: ''
+});
+
+SocialChef.SearchResultsController = Ember.ArrayController.extend({
+    query: ''
+});
+
 
 SocialChef.ProductsRoute = Ember.Route.extend({
     setupController: function(productsController) {

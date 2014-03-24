@@ -1,8 +1,48 @@
 <div class="container">
     <div class="row">
-        <form {{action 'search' on='submit'}} class="form-horizontal form-group" method="get" accept-charset="utf-8" id="productSeachForm">
-            {{input type="search" id="products-search" placeholder="Buscador de Comidas" value=search_query class="form-control"}}
-            <button class="submit" {{action "search"}}>Buscar</button>
+        <form {{action 'search' on='submit'}}
+                    class="form-horizontal"
+                    method="get"
+                    accept-charset="utf-8"
+                    id="productSeachForm"
+                    role="form">
+
+            <div class="form-group input-group">
+                <span class="dropdown input-group-btn">
+                    <button type="button" data-toggle="dropdown"
+                                  class="btn btn-default dropdown-toggle">
+                        Busqueda <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li>
+                            <a {{action "setCategory" 'precio'}}> Precio </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a {{action "setCategory" 'chef'}}> Chef </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a {{action "setCategory" 'category'}}> Categoria </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a {{action "setCategory" 'location'}}> Ubicación </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a {{action "setCategory" 'name'}}> Nombre </a>
+                        </li>
+                    </ul>
+                </span>
+                {{input type="search" id="products-search"
+                    placeholder="Buscador de Comidas"
+                    value=search_query
+                    class="form-control"}}
+                <span class="input-group-btn">
+                    <button class="submit btn btn-primary" {{action "search"}}>Buscar</button>
+                </span>
+            </div>
         </form>
     </div>
 </div>

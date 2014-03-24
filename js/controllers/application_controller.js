@@ -1,19 +1,13 @@
 SocialChef.ApplicationController = Ember.ObjectController.extend({
+    category: '',
     actions: {
         search: function (search_query) {
-            var product = products.findBy('name', search_query.query);
-            if (product == null) {
-                 product = products.findBy('category', search_query.query);
-                if (product == null) {
-                    product = products.findBy('cheff', search_query.query);
-                    if (product == null) {
-                        alert("nothing found");
-                        return null;
-                    }
-                }
-            }
-            alert(product.name + ": " + product.price);
-            return product;
+            this.transitionToRoute('search.results', search_query);
+        },
+        changeCategory: function(category) {
+            console.log(category);
+            // console.log('Category: ' + this.get('category'));
+            this.set('category', category);
         }
     }
 });

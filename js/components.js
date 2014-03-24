@@ -6,6 +6,10 @@ SocialChef.ProductsSearchComponent = Ember.Component.extend({
           this.sendAction('search',{
               query: this.get("search_query")
           });
+      },
+      setCategory: function(param) {
+          // console.log(param);
+          this.sendAction('changeCategory',param);
       }
   }
 });
