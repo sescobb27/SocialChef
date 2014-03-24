@@ -19,6 +19,7 @@ module.exports = function(config) {
       'js/libs/jquery-1.10.2.js',
       'js/libs/handlebars-1.1.2.js',
       'js/libs/ember-1.4.0.js',
+      'js/libs/ember-data.js',
       'js/libs/bootstrap.min.js',
       'js/libs/sinon-1.9.0.js',
       // END LIB
