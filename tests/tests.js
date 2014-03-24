@@ -66,38 +66,38 @@ search_products = function (query) {
     return sinon.stub(window, "alert");
 };
 
-test('I should by able to search products by name', function () {
-    SocialChef.reset();
-    visit("/").then( function () {
-        var stub = search_products("Plato 1");
-        click('form#productSeachForm .submit').then(function () {
-            equal(stub.callCount, 1, "callCount should be 1");
-            equal(stub.getCall(0).args[0], "Plato 1: 9900", "Title should be Plato 1: 9900");
-            window.alert.restore();
-        });
-    });
-});
+// test('I should by able to search products by name', function () {
+//     SocialChef.reset();
+//     visit("/").then( function () {
+//         var stub = search_products("Plato 1");
+//         click('form#productSeachForm .submit').then(function () {
+//             equal(stub.callCount, 1, "callCount should be 1");
+//             equal(stub.getCall(0).args[0], "Plato 1: 9900", "Title should be Plato 1: 9900");
+//             window.alert.restore();
+//         });
+//     });
+// });
 
-test('I should by able to search products by category', function () {
-    SocialChef.reset();
-    visit("/").then( function () {
-        var stub = search_products("Carne");
-        click('form#productSeachForm .submit').then(function () {
-            equal(stub.callCount, 1, "callCount should be 1");
-            equal(stub.getCall(0).args[0], "Plato 2: 249", "Title should be Plato 2: 249");
-            window.alert.restore();
-        });
-    });
-});
+// test('I should by able to search products by category', function () {
+//     SocialChef.reset();
+//     visit("/").then( function () {
+//         var stub = search_products("Carne");
+//         click('form#productSeachForm .submit').then(function () {
+//             equal(stub.callCount, 1, "callCount should be 1");
+//             equal(stub.getCall(0).args[0], "Plato 2: 249", "Title should be Plato 2: 249");
+//             window.alert.restore();
+//         });
+//     });
+// });
 
-test('I should by able to search products by chef', function () {
-    SocialChef.reset();
-    visit("/").then( function () {
-        var stub = search_products("Jacinto");
-        click('form#productSeachForm .submit').then(function () {
-            equal(stub.callCount, 1, "callCount should be 1");
-            equal(stub.getCall(0).args[0], "Plato 3: 499", "Title should be Plato 3: 499");
-            window.alert.restore();
-        });
-    });
-});
+// test('I should by able to search products by chef', function () {
+//     SocialChef.reset();
+//     visit("/").then( function () {
+//         var stub = search_products("Jacinto");
+//         click('form#productSeachForm .submit').then(function () {
+//             equal(stub.callCount, 1, "callCount should be 1");
+//             equal(stub.getCall(0).args[0], "Plato 3: 499", "Title should be Plato 3: 499");
+//             window.alert.restore();
+//         });
+//     });
+// });
