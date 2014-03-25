@@ -63,7 +63,9 @@ var products = [
 ];
 
 SocialChef.SearchRoute = Ember.Route.extend({
-
+    model: function(params) {
+        console.log(params);
+    }
 });
 
 SocialChef.SearchResultsRoute = Ember.Route.extend({
@@ -77,7 +79,7 @@ SocialChef.SearchResultsRoute = Ember.Route.extend({
   setupController: function(controller, model) {
       var context = this;
       console.log('Query: '+ model.query);
-      Ember.$.getJSON("http://localhost:8080/service/products/findby?key=category&search_value=carne")
+      Ember.$.getJSON("http://localhost:8080/service/products/findby?key=&search_value="+model.query)
           .then(function(products) {
                   controller.set('content', products);
           });
@@ -86,11 +88,13 @@ SocialChef.SearchResultsRoute = Ember.Route.extend({
 
 
 SocialChef.SearchController = Ember.ArrayController.extend({
-    query: ''
+    query: '',
+    category: ''
 });
 
 SocialChef.SearchResultsController = Ember.ArrayController.extend({
-    query: ''
+    query: '',
+    category: ''
 });
 
 

@@ -8,33 +8,6 @@
                     role="form">
 
             <div class="form-group input-group">
-                <span class="dropdown input-group-btn">
-                    <button type="button" data-toggle="dropdown"
-                                  class="btn btn-default dropdown-toggle">
-                        Busqueda <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu">
-                        <li>
-                            <a {{action "setCategory" 'precio'}}> Precio </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a {{action "setCategory" 'chef'}}> Chef </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a {{action "setCategory" 'category'}}> Categoria </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a {{action "setCategory" 'location'}}> Ubicación </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a {{action "setCategory" 'name'}}> Nombre </a>
-                        </li>
-                    </ul>
-                </span>
                 {{input type="search" id="products-search"
                     placeholder="Buscador de Comidas"
                     value=search_query

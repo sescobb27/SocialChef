@@ -47,12 +47,7 @@
             <div class="row">
               {{ products-search search="search"}}
               <div class="col-md-3">
-                  <p class="lead">Shop Name</p>
-                  <div class="list-group">
-                      {{#link-to "" class="list-group-item"}} New {{/link-to}}
-                      {{#link-to "" class="list-group-item"}} Popular {{/link-to}}
-                      {{#link-to "" class="list-group-item"}} Categories {{/link-to}}
-                  </div>
+                  {{left-panel}}
               </div>
               <div class="container">
                   <div class="col-md-9">
@@ -214,33 +209,6 @@
                                 role="form">
 
                         <div class="form-group input-group">
-                            <span class="dropdown input-group-btn">
-                                <button type="button" data-toggle="dropdown"
-                                              class="btn btn-default dropdown-toggle">
-                                    Busqueda <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <a {{action "setCategory" 'precio'}}> Precio </a>
-                                    </li>
-                                    <li class="divider"></li>
-                                    <li>
-                                        <a {{action "setCategory" 'chef'}}> Chef </a>
-                                    </li>
-                                    <li class="divider"></li>
-                                    <li>
-                                        <a {{action "setCategory" 'category'}}> Categoria </a>
-                                    </li>
-                                    <li class="divider"></li>
-                                    <li>
-                                        <a {{action "setCategory" 'location'}}> Ubicación </a>
-                                    </li>
-                                    <li class="divider"></li>
-                                    <li>
-                                        <a {{action "setCategory" 'name'}}> Nombre </a>
-                                    </li>
-                                </ul>
-                            </span>
                             {{input type="search" id="products-search"
                                 placeholder="Buscador de Comidas"
                                 value=search_query
@@ -252,6 +220,80 @@
                     </form>
                 </div>
             </div>
+        </script>
+
+        <script type="text/x-handlebars" id="components/left-panel">
+            <p class="lead">Buscar Por</p>
+              <div class="panel-group" id="accordion">
+                  <div class="panel panel-default">
+                      <div class="panel-heading">
+                          <h4 class="panel-title">
+                              <a href="#collapseOne" data-toggle="collapse" data-parent="#accordion"> Populares </a>
+                          </h4>
+                      </div>
+                      <div id="collapseOne" class="panel-collapse collapse in">
+                          <div class="panel-body">
+                              Populares ...
+                          </div>
+                      </div>
+                  </div>
+                  <div class="panel panel-default">
+                      <div class="panel-heading">
+                          <h4 class="panel-title">
+                              <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                                  Nuevos
+                               </a>
+                          </h4>
+                      </div>
+                      <div id="collapseTwo" class="panel-collapse collapse">
+                          <div class="panel-body">
+                              Nuevos ...
+                          </div>
+                      </div>
+                  </div>
+                  <div class="panel panel-default">
+                      <div class="panel-heading">
+                          <h4 class="panel-title">
+                              <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                                  Ubicación
+                               </a>
+                          </h4>
+                      </div>
+                      <div id="collapseThree" class="panel-collapse collapse">
+                          <div class="panel-body">
+                              Ubicación ...
+                          </div>
+                      </div>
+                  </div>
+                  <div class="panel panel-default">
+                      <div class="panel-heading">
+                          <h4 class="panel-title">
+                              <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+                                  Categorias
+                               </a>
+                          </h4>
+                      </div>
+                      <div id="collapseFour" class="panel-collapse collapse">
+                          <div class="panel-body">
+                              Categorias ...
+                          </div>
+                      </div>
+                  </div>
+                  <div class="panel panel-default">
+                      <div class="panel-heading">
+                          <h4 class="panel-title">
+                              <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive">
+                                  Precios
+                               </a>
+                          </h4>
+                      </div>
+                      <div id="collapseFive" class="panel-collapse collapse">
+                          <div class="panel-body">
+                              Precios ...
+                          </div>
+                      </div>
+                  </div>
+              </div>
         </script>
 
         <script type="text/x-handlebars" id="search/results">

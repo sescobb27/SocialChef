@@ -4,7 +4,8 @@ SocialChef.ApplicationController = Ember.ObjectController.extend({
         search: function (search_query) {
             this.transitionToRoute('search.results', search_query);
         },
-        changeCategory: function(category) {
+        change: function(category) {
+            console.log('Change Category');
             console.log(category);
             // console.log('Category: ' + this.get('category'));
             this.set('category', category);
