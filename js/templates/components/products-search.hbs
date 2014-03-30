@@ -4,7 +4,7 @@
                     class="form-horizontal"
                     method="get"
                     accept-charset="utf-8"
-                    id="productSeachForm"
+                    id="productSearchForm"
                     role="form">
 
             <div class="form-group input-group">
@@ -13,7 +13,9 @@
                     value=search_query
                     class="form-control"}}
                 <span class="input-group-btn">
-                    <button class="submit btn btn-primary" {{action "search"}}>Buscar</button>
+                    <button class="submit btn btn-primary"
+                        {{action "search"}}
+                        id="search-btn">Buscar</button>
                 </span>
             </div>
         </form>

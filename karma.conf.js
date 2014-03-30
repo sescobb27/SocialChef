@@ -5,7 +5,7 @@ module.exports = function(config) {
   config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
-    basePath: '',
+    basePath: 'js',
 
 
     // frameworks to use
@@ -16,29 +16,27 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: [
       // LIBS
-      'js/libs/jquery-1.10.2.js',
-      'js/libs/handlebars-1.1.2.js',
-      'js/libs/ember-1.4.0.js',
-      'js/libs/ember-data.js',
-      'js/libs/bootstrap.min.js',
-      'js/libs/sinon-1.9.0.js',
+      'libs/jquery-1.10.2.js',
+      'libs/handlebars-1.1.2.js',
+      'libs/ember-1.4.0.js',
+      'libs/bootstrap.min.js',
+      'libs/sinon-1.9.0.js',
       // END LIB
 
       // TEMPLATES
-      "js/templates/components/*.handlebars",
-      "js/templates/components/*.hbs",
-      "js/templates/components/templates.js",
+      "templates/components/*.handlebars",
+      "templates/components/*.hbs",
+      "templates/components/templates.js",
       // END TEMPLATES
 
-      'js/app.js',
+      'app.js',
+      'router.js',
       'tests/runner.js',
       'tests/tests.js',
-      'js/router.js',
-      'js/controllers/*.js',
-      'js/components.js',
-      'js/components/*.js',
-      'js/models/*.js',
-      'js/test/*.js',
+      'components.js',
+      'controllers/*.js',
+      'models/*.js',
+      'test/*.js',
     ],
 
 

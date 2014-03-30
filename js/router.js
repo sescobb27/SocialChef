@@ -30,38 +30,6 @@ SocialChef.IndexRoute = Ember.Route.extend({
   }
 });
 
-var products = [
-    {
-        id: 1,
-        name: 'Plato 1',
-        price: 9900,
-        category: 'Pasta',
-        description: 'Descripcion del plato 1.',
-        cheff:'Pablo',
-        image: 'images/gourmet1.jpg'
-
-    },
-    {
-        id: 2,
-        name: 'Plato 2',
-        price: 249,
-        category: 'Carne',
-        description: 'Descripcion del plato 2.',
-        cheff:'Pedro',
-        image: 'images/gourmet2.jpg'
-    },
-    {
-        id: 3,
-        name: 'Plato 3',
-        price: 499,
-        category: 'Postre',
-        description: 'Descripcion del plato 3.',
-        cheff:'Jacinto',
-        image: 'images/gourmet3.jpg'
-
-    }
-];
-
 SocialChef.SearchRoute = Ember.Route.extend({
     model: function(params) {
         console.log(params);
@@ -79,9 +47,9 @@ SocialChef.SearchResultsRoute = Ember.Route.extend({
   setupController: function(controller, model) {
       var context = this;
       console.log('Query: '+ model.query);
-      Ember.$.getJSON("http://localhost:8080/service/products/findby?key=&search_value="+model.query)
+      Ember.$.getJSON("http://localhost:8080/service/products/findby", {key:"", search_value: model.query})
           .then(function(products) {
-                  controller.set('content', products);
+                  controller.set('model', products);
           });
   }
 });
@@ -102,7 +70,7 @@ SocialChef.ProductsRoute = Ember.Route.extend({
     setupController: function(productsController) {
         console.log("Fetching Products");
         Ember.$.getJSON("http://localhost:8080/service/products").then(function(products) {
-                productsController.set('content', products)
+                productsController.set('model', products);
         });
     }
 });

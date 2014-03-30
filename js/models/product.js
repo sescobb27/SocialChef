@@ -1,22 +1,18 @@
-SocialChef.Product = DS.Model.extend({
+SocialChef.Product = Ember.Object.extend({
   // ==========================================================================
   // ATTRIBUTES
   // ==========================================================================
-  name: DS.attr('string'),
-  price: DS.attr('number'),
-  category: DS.attr('string'),
-  location: DS.attr('string'),
-  rate: DS.attr('number', {defaultValue: 0.0}),
-  description: DS.attr('string'),
-  deliveryTime: DS.attr('date'),
-  disponibilityTime: DS.attr('date'),
-  chef: DS.belongsTo('user', {embedded: 'load'}),
-  image: DS.attr('string'),
-  createdAt: DS.attr('date', {
-    defaultValue: function() {
-        return new Date();
-    }
-  }),
+  name: "",
+  price: 0.0,
+  category: "",
+  location: "",
+  rate: 0.0,
+  description: "",
+  deliveryTime: null,
+  disponibilityTime: null,
+  chef: null,
+  image: "",
+  createdAt: null,
   // ==========================================================================
   // END ATTRIBUTES
   // ==========================================================================
