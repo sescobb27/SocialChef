@@ -1,0 +1,33 @@
+<div class="row">
+    <form {{action 'register' on='submit'}}
+                class="form-horizontal form-group"
+                method="post"
+                accept-charset="utf-8"
+                id="registerForm"
+                role="form">
+
+        <div class="col-xs-6">
+            {{input type="text" id="user_name"
+                placeholder="Nombre"
+                value=name
+                class="form-control col-xs-3"}}
+            {{input type="text" id="user_last_name"
+                placeholder="Apellido"
+                value=last_name
+                class="form-control col-xs-3"}}
+            {{input type="text" id="username"
+                placeholder="Usuario"
+                value=username
+                class="form-control col-xs-3"}}
+            {{input type="password" id="user_password"
+                placeholder="Contraseña"
+                value=password
+                class="form-control col-xs-3"}}
+            {{input type="password" id="confirm_password"
+                placeholder="Confirmacion Contraseña"
+                value=confirm_password
+                class="form-control col-xs-3"}}
+            <button class="submit btn btn-primary" {{action "register"}}>Aceptar</button>
+        </div>
+    </form>
+</div>
