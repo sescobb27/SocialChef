@@ -5,11 +5,12 @@ module.exports = function(grunt) {
         emberTemplates: {
             compile: {
                 options: {
-                    templateBasePath: /js\/templates\/components\//
+                    templateBasePath: /js\/templates\//
                 },
                 files: {
                     'js/templates/components/templates.js': ['js/templates/components/*.hbs',
-                        'js/templates/components/*.handlebars']
+                        'js/templates/*.hbs',
+                        'js/templates/**/*.hbs']
                 }
             }
         },
@@ -17,7 +18,8 @@ module.exports = function(grunt) {
         watch: {
             emberTemplates: {
                 files: ['js/templates/components/*.hbs',
-                            'js/templates/components/*.handlebars'],
+                            'js/templates/*.hbs',
+                            'js/templates/**/*.hbs'],
                 tasks: ['emberTemplates']
             }
         }

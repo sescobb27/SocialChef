@@ -63,7 +63,7 @@ test('I should by able to search products by name', function () {
       .click('#search-btn')
       .then(function () {
           equal(server.requests.length, 1, "");
-          equal(server.requests[0].url, "http://localhost:8080/service/products/findby?key=&search_value=Plato+1", "");
+          equal(server.requests[0].url, "http://localhost:8080/service/products/findby?search_value=Plato+1", "");
       });
 });
 
@@ -74,7 +74,7 @@ test('I should by able to search products by category', function () {
     .click('#search-btn')
     .then(function () {
         equal(server.requests.length, 1, "");
-        equal(server.requests[0].url, "http://localhost:8080/service/products/findby?key=&search_value=Carne", "");
+        equal(server.requests[0].url, "http://localhost:8080/service/products/findby?search_value=Carne", "");
     });
 });
 
@@ -85,7 +85,7 @@ test('I should by able to search products by chef', function () {
     .click('#search-btn')
     .then(function () {
         equal(server.requests.length, 1, "");
-        equal(server.requests[0].url, "http://localhost:8080/service/products/findby?key=&search_value=Jacinto", "");
+        equal(server.requests[0].url, "http://localhost:8080/service/products/findby?search_value=Jacinto", "");
     });
 });
 

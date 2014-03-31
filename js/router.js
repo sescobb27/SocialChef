@@ -47,7 +47,7 @@ SocialChef.SearchResultsRoute = Ember.Route.extend({
   setupController: function(controller, model) {
       var context = this;
       console.log('Query: '+ model.query);
-      Ember.$.getJSON("http://localhost:8080/service/products/findby", {key:"", search_value: model.query})
+      Ember.$.getJSON("http://localhost:8080/service/products/findby", {search_value: model.query})
           .then(function(products) {
                   controller.set('model', products);
           });
