@@ -2,18 +2,50 @@ SocialChef.LoginController = Ember.ObjectController.extend({
     // ==========================================================================
     // PROPERTIES
     // ==========================================================================
-    username: null,
-    password: null,
+    username: '',
+    password: '',
+    loginFailed: false,
+    isProcessing: false,
+    isSlowConnection: false,
+    timeout: null,
     // ==========================================================================
     // END PROPERTIES
     // ==========================================================================
+    actions : {
+        login: function() {
+            this.setProperties({
+                loginFailed: false,
+                isProcessing: true
+            });
 
-    actions: {
-        login: function () {
-            var username = this.get("username");
-            var password = this.get("password");
-            // SEND USERNAME AND PASSWORD TO THE SERVER, THERE TAKE THE DATE FROM THE USER
-            // AND COMPUTE THE SHA1 FOR AUTHENTICATE THE USER
+            this.set("timeout",
+                setTimeout(this.slowConnection.bind(this), 5000));
+
+            var request = $.post("http://localhost:8080/service/login",
+                this.getProperties("username", "password"));
+            request.then(this.success.bind(this), this.failure.bind(this));
         }
+    },
+
+    success: function() {
+        this.reset();
+        this.transitionToRoute('index');
+    },
+
+    failure: function() {
+        this.reset();
+        this.set("loginFailed", true);
+    },
+
+    slowConnection: function() {
+        this.set("isSlowConnection", true);
+    },
+
+    reset: function() {
+        clearTimeout(this.get("timeout"));
+        this.setProperties({
+            isProcessing: false,
+            isSlowConnection: false
+        });
     }
 });

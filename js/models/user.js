@@ -12,15 +12,13 @@ SocialChef.User = Ember.Object.extend({
   picture: "",
   products: [],
   createdAt: null,
+  password: "",
+  password_confirm: "",
   // ==========================================================================
   // END ATTRIBUTES
   // ==========================================================================
 
   init: function() {
     // Setup
-  },
-
-  method: function(value) {
-
   }
 });

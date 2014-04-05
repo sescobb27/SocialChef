@@ -1,11 +1,20 @@
 <div class="row">
+    {{#if loginFailed}}
+        <div class="alert alert-danger">
+            Invalid username or password.
+        </div>
+    {{/if}}
+    {{#if isSlowConnection}}
+        <div class="alert alert-info">
+            The request seems to be taking more time than usual, please wait.
+        </div>
+    {{/if}}
     <form {{action 'login' on='submit'}}
                 class="form-horizontal form-group"
                 method="post"
                 accept-charset="utf-8"
                 id="loginForm"
                 role="form">
-
         <div class="col-xs-6">
             {{input type="text" id="user_name"
                 placeholder="Usuario"
@@ -15,7 +24,9 @@
                 placeholder="Contraseña"
                 value=password
                 class="form-control col-xs-3"}}
-            <button class="submit btn btn-primary" {{action "login"}}>Aceptar</button>
+            <button class="submit btn btn-primary"
+                            {{bind-attr disabled="isProcessing"}}
+                            type="submit">Aceptar</button>
         </div>
     </form>
 </div>
