@@ -131,13 +131,13 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
 function program1(depth0,data) {
   
   
-  data.buffer.push("\n        <div class=\"alert alert-danger\">\n            Invalid username or password.\n        </div>\n    ");
+  data.buffer.push("\n        <div id=\"error_msg\" class=\"alert alert-danger\">\n            Invalid username or password.\n        </div>\n    ");
   }
 
 function program3(depth0,data) {
   
   
-  data.buffer.push("\n        <div class=\"alert alert-info\">\n            The request seems to be taking more time than usual, please wait.\n        </div>\n    ");
+  data.buffer.push("\n        <div id=\"info_msg\" class=\"alert alert-info\">\n            The request seems to be taking more time than usual, please wait.\n        </div>\n    ");
   }
 
   data.buffer.push("<div class=\"row\">\n    ");
@@ -252,14 +252,22 @@ function program2(depth0,data) {
 Ember.TEMPLATES["register"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
-  var buffer = '', helper, options, escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing;
+  var buffer = '', stack1, helper, options, escapeExpression=this.escapeExpression, self=this, helperMissing=helpers.helperMissing;
 
+function program1(depth0,data) {
+  
+  
+  data.buffer.push("\n            <div id=\"error_msg\" class=\"alert alert-danger\">\n                la contraseña y la confirmación de la contraseña no concuerdan\n            </div>\n        ");
+  }
 
   data.buffer.push("<div class=\"row\">\n    <form ");
-  data.buffer.push(escapeExpression(helpers.action.call(depth0, "register", {hash:{
+  data.buffer.push(escapeExpression(helpers.action.call(depth0, "validate", {hash:{
     'on': ("submit")
   },hashTypes:{'on': "STRING"},hashContexts:{'on': depth0},contexts:[depth0],types:["STRING"],data:data})));
-  data.buffer.push("\n                class=\"form-horizontal form-group\"\n                method=\"post\"\n                accept-charset=\"utf-8\"\n                id=\"registerForm\"\n                role=\"form\">\n\n        <div class=\"col-xs-6\">\n            ");
+  data.buffer.push("\n                class=\"form-horizontal form-group\"\n                method=\"post\"\n                accept-charset=\"utf-8\"\n                id=\"registerForm\"\n                role=\"form\">\n        ");
+  stack1 = helpers['if'].call(depth0, "invalidPass", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("\n        <div class=\"col-xs-6\">\n            ");
   data.buffer.push(escapeExpression((helper = helpers.input || (depth0 && depth0.input),options={hash:{
     'type': ("text"),
     'id': ("user_name"),
@@ -299,8 +307,12 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
     'value': ("confirm_password"),
     'class': ("form-control col-xs-3")
   },hashTypes:{'type': "STRING",'id': "STRING",'placeholder': "STRING",'value': "ID",'class': "STRING"},hashContexts:{'type': depth0,'id': depth0,'placeholder': depth0,'value': depth0,'class': depth0},contexts:[],types:[],data:data},helper ? helper.call(depth0, options) : helperMissing.call(depth0, "input", options))));
-  data.buffer.push("\n            <button class=\"submit btn btn-primary\" ");
-  data.buffer.push(escapeExpression(helpers.action.call(depth0, "register", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["STRING"],data:data})));
+  data.buffer.push("\n            <button class=\"submit btn btn-primary\"\n                ");
+  data.buffer.push(escapeExpression(helpers.action.call(depth0, "validate", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["STRING"],data:data})));
+  data.buffer.push("\n                ");
+  data.buffer.push(escapeExpression(helpers['bind-attr'].call(depth0, {hash:{
+    'disabled': ("isProcessing")
+  },hashTypes:{'disabled': "STRING"},hashContexts:{'disabled': depth0},contexts:[],types:[],data:data})));
   data.buffer.push(">Aceptar</button>\n        </div>\n    </form>\n</div>");
   return buffer;
   

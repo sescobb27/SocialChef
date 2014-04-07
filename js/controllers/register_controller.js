@@ -7,28 +7,43 @@ SocialChef.RegisterController = Ember.ObjectController.extend({
     username: '',
     password: '',
     confirm_password: '',
+    invalidPass: false,
+    isProcessing: false,
     // ==========================================================================
     // END PROPERTIES
     // ==========================================================================
 
     actions: {
-        register: function () {
-            var name = this.get("name");
-            var last_name = this.get("last_name");
-            var username = this.get("username");
+        validate: function () {
+            this.set('isProcessing', true);
+            var name = $.trim(this.get("name"));
+            var last_name = $.trim(this.get("last_name"));
+            var username = $.trim(this.get("username"));
             var pass = $.trim(this.get('password'));
             var confirm = $.trim(this.get('password_confirm'));
-            var validPass = "la contraseña y la confirmación de la contraseña ";
-            if (!pass.empty() && !confirm.empty()) {
+            if (!this.empty(pass) && !this.empty(confirm)) {
                 if (pass === confirm) {
-                    validPass += "concuerdan";
+                    this.set('invalidPass', false);
                 } else {
-                    validPass += "no concuerdan";
+                    this.set('invalidPass', true);
                 }
             } else {
-                validPass += "no pueden estar vacias";
+                this.set('invalidPass', true);
+                this.set('isProcessing', false);
                 return false;
             }
+            if (!this.empty(name) &&
+                    !this.empty(last_name) &&
+                    !this.empty(username)) {
+                this.send('register');
+            }
+        },
+
+        register: function() {
+
         }
+    },
+    empty: function(obj) {
+        return obj === "" || obj;
     }
 });
