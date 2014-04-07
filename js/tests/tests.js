@@ -89,6 +89,18 @@ test('I should by able to search products by chef', function () {
     });
 });
 
+test('I should see an error when submit an empty login', function() {
+    server.respondWith("post", "http://localhost:8080/service/login");
+    visit('/login')
+    .fillIn("input#user_name","")
+    .fillIn("input#user_password","")
+    .click('#login_btn')
+    .then(function() {
+        equal(server.requests.length, 1, "");
+        equal(server.requests[0].url, "http://localhost:8080/service/login", "");
+    });
+});
+
 module("Integration tests", {
     setup: function() {
         // before each test, ensure the application is ready to run.

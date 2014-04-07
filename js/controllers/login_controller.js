@@ -18,12 +18,23 @@ SocialChef.LoginController = Ember.ObjectController.extend({
                 isProcessing: true
             });
 
-            this.set("timeout",
-                setTimeout(this.slowConnection.bind(this), 5000));
+            var self = this;
+            Ember.run.later(self, function(){
+                self.slowConnection();
+            }, 5000);
 
-            var request = $.post("http://localhost:8080/service/login",
-                this.getProperties("username", "password"));
-            request.then(this.success.bind(this), this.failure.bind(this));
+            var promise = Ember.$.post("http://localhost:8080/service/login",
+                self.getProperties("username", "password"));
+            promise.success(function(){
+                Ember.run(function(){
+                    self.success();
+                });
+            });
+            promise.fail(function(){
+                Ember.run(function(){
+                    self.failure();
+                });
+             });
         }
     },
 
@@ -38,7 +49,9 @@ SocialChef.LoginController = Ember.ObjectController.extend({
     },
 
     slowConnection: function() {
-        this.set("isSlowConnection", true);
+        if (!this.get('loginFailed')) {
+            this.set("isSlowConnection", true);
+        }
     },
 
     reset: function() {

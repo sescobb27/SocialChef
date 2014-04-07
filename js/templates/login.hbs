@@ -1,11 +1,11 @@
 <div class="row">
     {{#if loginFailed}}
-        <div class="alert alert-danger">
+        <div id="error_msg" class="alert alert-danger">
             Invalid username or password.
         </div>
     {{/if}}
     {{#if isSlowConnection}}
-        <div class="alert alert-info">
+        <div id="info_msg" class="alert alert-info">
             The request seems to be taking more time than usual, please wait.
         </div>
     {{/if}}
@@ -24,7 +24,8 @@
                 placeholder="Contraseña"
                 value=password
                 class="form-control col-xs-3"}}
-            <button class="submit btn btn-primary"
+            <button id="login_btn"
+                            class="submit btn btn-primary"
                             {{bind-attr disabled="isProcessing"}}
                             type="submit">Aceptar</button>
         </div>

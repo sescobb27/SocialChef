@@ -31,12 +31,12 @@ module.exports = function(config) {
 
       'app.js',
       'router.js',
-      'tests/runner.js',
-      'tests/tests.js',
       'components.js',
       'controllers/*.js',
       'models/*.js',
       'test/*.js',
+      'tests/runner.js',
+      'tests/tests.js',
     ],
 
 

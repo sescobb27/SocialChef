@@ -166,7 +166,7 @@ function program3(depth0,data) {
     'value': ("password"),
     'class': ("form-control col-xs-3")
   },hashTypes:{'type': "STRING",'id': "STRING",'placeholder': "STRING",'value': "ID",'class': "STRING"},hashContexts:{'type': depth0,'id': depth0,'placeholder': depth0,'value': depth0,'class': depth0},contexts:[],types:[],data:data},helper ? helper.call(depth0, options) : helperMissing.call(depth0, "input", options))));
-  data.buffer.push("\n            <button class=\"submit btn btn-primary\"\n                            ");
+  data.buffer.push("\n            <button id=\"login_btn\"\n                            class=\"submit btn btn-primary\"\n                            ");
   data.buffer.push(escapeExpression(helpers['bind-attr'].call(depth0, {hash:{
     'disabled': ("isProcessing")
   },hashTypes:{'disabled': "STRING"},hashContexts:{'disabled': depth0},contexts:[],types:[],data:data})));
