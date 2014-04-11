@@ -57,47 +57,47 @@ var products = [{
 ];
 
 test('I should by able to search products by name', function () {
-    server.respondWith("get", "http://localhost:8080/service/products/findby");
+    server.respondWith("get", "http://localhost:8080/products/findby");
     visit("/")
       .fillIn('input#products-search', "Plato 1")
       .click('#search-btn')
       .then(function () {
           equal(server.requests.length, 1, "");
-          equal(server.requests[0].url, "http://localhost:8080/service/products/findby?search_value=Plato+1", "");
+          equal(server.requests[0].url, "http://localhost:8080/products/findby?search_value=Plato+1", "");
       });
 });
 
 test('I should by able to search products by category', function () {
-  server.respondWith("get", "http://localhost:8080/service/products/findby");
+  server.respondWith("get", "http://localhost:8080/products/findby");
   visit("/")
     .fillIn('input#products-search', "Carne")
     .click('#search-btn')
     .then(function () {
         equal(server.requests.length, 1, "");
-        equal(server.requests[0].url, "http://localhost:8080/service/products/findby?search_value=Carne", "");
+        equal(server.requests[0].url, "http://localhost:8080/products/findby?search_value=Carne", "");
     });
 });
 
 test('I should by able to search products by chef', function () {
-  server.respondWith("get", "http://localhost:8080/service/products/findby");
+  server.respondWith("get", "http://localhost:8080/products/findby");
   visit("/")
     .fillIn('input#products-search', "Jacinto")
     .click('#search-btn')
     .then(function () {
         equal(server.requests.length, 1, "");
-        equal(server.requests[0].url, "http://localhost:8080/service/products/findby?search_value=Jacinto", "");
+        equal(server.requests[0].url, "http://localhost:8080/products/findby?search_value=Jacinto", "");
     });
 });
 
 test('I should see an error when submit an empty login', function() {
-    server.respondWith("post", "http://localhost:8080/service/login");
+    server.respondWith("post", "http://localhost:8080/login");
     visit('/login')
     .fillIn("input#user_name","")
     .fillIn("input#user_password","")
     .click('#login_btn')
     .then(function() {
         equal(server.requests.length, 1, "");
-        equal(server.requests[0].url, "http://localhost:8080/service/login", "");
+        equal(server.requests[0].url, "http://localhost:8080/login", "");
     });
 });
 

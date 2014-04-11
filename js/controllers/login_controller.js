@@ -23,7 +23,7 @@ SocialChef.LoginController = Ember.ObjectController.extend({
                 self.slowConnection();
             }, 5000);
 
-            var promise = Ember.$.post("http://localhost:8080/service/login",
+            var promise = Ember.$.post("http://localhost:8080/login",
                 self.getProperties("username", "password"));
             promise.success(function(){
                 Ember.run(function(){
