@@ -20,12 +20,13 @@ SocialChef.RegisterController = Ember.ObjectController.extend({
             var last_name = $.trim(this.get("last_name"));
             var username = $.trim(this.get("username"));
             var pass = $.trim(this.get('password'));
-            var confirm = $.trim(this.get('password_confirm'));
+            var confirm = $.trim(this.get('confirm_password'));
             if (!this.empty(pass) && !this.empty(confirm)) {
                 if (pass === confirm) {
                     this.set('invalidPass', false);
                 } else {
                     this.set('invalidPass', true);
+                    return false;
                 }
             } else {
                 this.set('invalidPass', true);
@@ -40,10 +41,36 @@ SocialChef.RegisterController = Ember.ObjectController.extend({
         },
 
         register: function() {
-
+            var self = this;
+            var promise = Ember.$.ajax({
+                type: 'POST',
+                url: "/chefs",
+                contentType: "application/json",
+                dataType: "json",
+                data: JSON.stringify(self.serialize())
+            });
+            promise.success(function(){
+                Ember.run(function(){
+                    self.success();
+                });
+            });
+            promise.fail(function(){
+                Ember.run(function(){
+                    self.set('isProcessing', false);
+                });
+             });
         }
     },
     empty: function(obj) {
-        return obj === "" || obj;
+        return obj === "" || obj === null;
+    },
+    serialize: function() {
+        return {
+            name: this.get('name'),
+            lastName: this.get('last_name'),
+            userName: this.get('username'),
+            email: this.get('email'),
+            password: this.get('password')
+        };
     }
 });
