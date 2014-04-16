@@ -74,6 +74,34 @@ function program7(depth0,data) {
 
 function program9(depth0,data) {
   
+  var buffer = '', stack1, helper, options;
+  data.buffer.push("\n              <li> ");
+  stack1 = (helper = helpers['link-to'] || (depth0 && depth0['link-to']),options={hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(10, program10, data),contexts:[depth0],types:["STRING"],data:data},helper ? helper.call(depth0, "products", options) : helperMissing.call(depth0, "link-to", "products", options));
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push(" </li>\n          ");
+  return buffer;
+  }
+function program10(depth0,data) {
+  
+  var buffer = '', stack1;
+  data.buffer.push(" ");
+  stack1 = helpers._triageMustache.call(depth0, "username", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push(" ");
+  return buffer;
+  }
+
+function program12(depth0,data) {
+  
+  var buffer = '', stack1, helper, options;
+  data.buffer.push("\n              <li> ");
+  stack1 = (helper = helpers['link-to'] || (depth0 && depth0['link-to']),options={hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(13, program13, data),contexts:[depth0],types:["STRING"],data:data},helper ? helper.call(depth0, "register", options) : helperMissing.call(depth0, "link-to", "register", options));
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push(" </li>\n          ");
+  return buffer;
+  }
+function program13(depth0,data) {
+  
   
   data.buffer.push(" Register ");
   }
@@ -93,10 +121,10 @@ function program9(depth0,data) {
   data.buffer.push(" </li>\n          <li> ");
   stack1 = (helper = helpers['link-to'] || (depth0 && depth0['link-to']),options={hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(7, program7, data),contexts:[depth0],types:["STRING"],data:data},helper ? helper.call(depth0, "login", options) : helperMissing.call(depth0, "link-to", "login", options));
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push(" </li>\n          <li> ");
-  stack1 = (helper = helpers['link-to'] || (depth0 && depth0['link-to']),options={hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(9, program9, data),contexts:[depth0],types:["STRING"],data:data},helper ? helper.call(depth0, "register", options) : helperMissing.call(depth0, "link-to", "register", options));
+  data.buffer.push(" </li>\n          ");
+  stack1 = helpers['if'].call(depth0, "username", {hash:{},hashTypes:{},hashContexts:{},inverse:self.program(12, program12, data),fn:self.program(9, program9, data),contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push(" </li>\n      </ul>\n    </nav>\n  </nav>\n</nav>\n<div class=\"container\">\n    <div><h1>SocialChef</h1></div>\n    <div class=\"row\">\n      ");
+  data.buffer.push("\n      </ul>\n    </nav>\n  </nav>\n</nav>\n<div class=\"container\">\n    <div><h1>SocialChef</h1></div>\n    <div class=\"row\">\n      ");
   data.buffer.push(escapeExpression((helper = helpers['products-search'] || (depth0 && depth0['products-search']),options={hash:{
     'search': ("search")
   },hashTypes:{'search': "STRING"},hashContexts:{'search': depth0},contexts:[],types:[],data:data},helper ? helper.call(depth0, options) : helperMissing.call(depth0, "products-search", options))));
@@ -289,6 +317,14 @@ function program1(depth0,data) {
     'id': ("username"),
     'placeholder': ("Usuario"),
     'value': ("username"),
+    'class': ("form-control col-xs-3")
+  },hashTypes:{'type': "STRING",'id': "STRING",'placeholder': "STRING",'value': "ID",'class': "STRING"},hashContexts:{'type': depth0,'id': depth0,'placeholder': depth0,'value': depth0,'class': depth0},contexts:[],types:[],data:data},helper ? helper.call(depth0, options) : helperMissing.call(depth0, "input", options))));
+  data.buffer.push("\n            ");
+  data.buffer.push(escapeExpression((helper = helpers.input || (depth0 && depth0.input),options={hash:{
+    'type': ("email"),
+    'id': ("email"),
+    'placeholder': ("Correo"),
+    'value': ("email"),
     'class': ("form-control col-xs-3")
   },hashTypes:{'type': "STRING",'id': "STRING",'placeholder': "STRING",'value': "ID",'class': "STRING"},hashContexts:{'type': depth0,'id': depth0,'placeholder': depth0,'value': depth0,'class': depth0},contexts:[],types:[],data:data},helper ? helper.call(depth0, options) : helperMissing.call(depth0, "input", options))));
   data.buffer.push("\n            ");

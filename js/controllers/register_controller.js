@@ -5,6 +5,7 @@ SocialChef.RegisterController = Ember.ObjectController.extend({
     name: '',
     last_name: '',
     username: '',
+    email: '',
     password: '',
     confirm_password: '',
     invalidPass: false,
@@ -19,6 +20,7 @@ SocialChef.RegisterController = Ember.ObjectController.extend({
             var name = $.trim(this.get("name"));
             var last_name = $.trim(this.get("last_name"));
             var username = $.trim(this.get("username"));
+            var email = $.trim(this.get('email'));
             var pass = $.trim(this.get('password'));
             var confirm = $.trim(this.get('confirm_password'));
             if (!this.empty(pass) && !this.empty(confirm)) {
@@ -35,7 +37,8 @@ SocialChef.RegisterController = Ember.ObjectController.extend({
             }
             if (!this.empty(name) &&
                     !this.empty(last_name) &&
-                    !this.empty(username)) {
+                    !this.empty(username) &&
+                    !this.empty(email)) {
                 this.send('register');
             }
         },
@@ -72,5 +75,9 @@ SocialChef.RegisterController = Ember.ObjectController.extend({
             email: this.get('email'),
             password: this.get('password')
         };
+    },
+    success: function() {
+        var controller = SocialChef.__container__.lookup("controller:application");
+        controller.send('loggedIn', this.get('username'));
     }
 });

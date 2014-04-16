@@ -1,4 +1,5 @@
 SocialChef.ApplicationController = Ember.ObjectController.extend({
+    username: '',
     category: '',
     actions: {
         search: function (search_query) {
@@ -9,6 +10,9 @@ SocialChef.ApplicationController = Ember.ObjectController.extend({
             console.log(category);
             // console.log('Category: ' + this.get('category'));
             this.set('category', category);
+        },
+        loggedIn: function(username) {
+            this.set('username', username);
         }
     }
 });
