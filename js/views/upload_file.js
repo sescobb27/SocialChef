@@ -3,15 +3,16 @@ SocialChef.UploadFile = Ember.TextField.extend({
     attributeBindings: ['name'],
     type: 'file',
     file: null,
-    change: function (e) {
+    change: function (event) {
         var reader = new FileReader(),
-        context = this;
-        reader.onload = function (e) {
-            var image = e.target.result;
+                context = this;
+        this.set('file', event.target.files[0]);
+        reader.onload = function (event) {
+            var image = event.target.result;
             Ember.run(function() {
-                context.set('file', image);
+                $('#image_thumbnail').attr('src', image);
             });
         };
-        return reader.readAsDataURL(e.target.files[0]);
+        return reader.readAsDataURL(event.target.files[0]);
     }
 });

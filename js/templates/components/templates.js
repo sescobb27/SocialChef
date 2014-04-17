@@ -446,7 +446,7 @@ function program2(depth0,data) {
   return buffer;
   }
 
-  data.buffer.push("\n<div class=\"row\">\n    <form ");
+  data.buffer.push("<div class=\"row\">\n    <form ");
   data.buffer.push(escapeExpression(helpers.action.call(depth0, "validate", {hash:{
     'on': ("submit")
   },hashTypes:{'on': "STRING"},hashContexts:{'on': depth0},contexts:[depth0],types:["STRING"],data:data})));
@@ -474,11 +474,7 @@ function program2(depth0,data) {
     'name': ("product_image"),
     'file': ("product_image")
   },hashTypes:{'name': "STRING",'file': "ID"},hashContexts:{'name': depth0,'file': depth0},contexts:[depth0],types:["ID"],data:data})));
-  data.buffer.push("\n            <div id=\"logo\" class=\"thumbnail\">\n                <img id=\"image_thumbnail\"");
-  data.buffer.push(escapeExpression(helpers['bind-attr'].call(depth0, {hash:{
-    'src': ("product_image")
-  },hashTypes:{'src': "ID"},hashContexts:{'src': depth0},contexts:[],types:[],data:data})));
-  data.buffer.push(" alt=\"Imagen Plato\">\n            </div>\n            <button class=\"submit btn btn-primary\"\n                ");
+  data.buffer.push("\n            <div id=\"logo\" class=\"thumbnail\">\n                <img id=\"image_thumbnail\" alt=\"Imagen Plato\">\n            </div>\n            <button class=\"submit btn btn-primary\"\n                ");
   data.buffer.push(escapeExpression(helpers.action.call(depth0, "validate", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["STRING"],data:data})));
   data.buffer.push("\n                ");
   data.buffer.push(escapeExpression(helpers['bind-attr'].call(depth0, {hash:{

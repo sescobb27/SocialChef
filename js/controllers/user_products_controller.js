@@ -5,6 +5,7 @@ SocialChef.UserProductsAddController = Ember.ObjectController.extend({
   price: "",
   product_image: '',
   isProcessing: false,
+  file: null,
   errors: Ember.A([]),
   actions: {
       validate: function() {
@@ -27,6 +28,19 @@ SocialChef.UserProductsAddController = Ember.ObjectController.extend({
               return false;
           }
           this.send('addProduct');
+      },
+      change: function(event) {
+          var reader = new FileReader();
+          var context = this;
+          this.set('product_image', context.target.files[0]);
+          reader.onload = function (event) {
+              var image = event.target.result;
+              Ember.run(function() {
+                  $('#image_thumbnail').attr('src', image);
+                  // context.set('file', image);
+              });
+          };
+          return reader.readAsDataURL(event.target.files[0]);
       }
   },
   empty: function(obj) {
@@ -35,10 +49,10 @@ SocialChef.UserProductsAddController = Ember.ObjectController.extend({
   addProduct: function() {
       var self = this;
       var imageData = new FormData();
-      imageData.append('image', this.get('product_image'));
       imageData.append('username', self.get('application').get('username'));
       imageData.append('productname', self.get('product_name'));
       imageData.append('price', self.get('price'));
+      imageData.append('image', this.get('product_image'), 'file');
       var promise = Ember.$.ajax({
           type: 'POST',
           url: "/chefs/addproduct",
