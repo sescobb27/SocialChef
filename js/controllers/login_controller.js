@@ -23,11 +23,17 @@ SocialChef.LoginController = Ember.ObjectController.extend({
                 self.slowConnection();
             }, 5000);
 
-            var promise = Ember.$.post("http://localhost:8080/login",
-                self.getProperties("username", "password"));
-            promise.success(function(){
+            var promise = Ember.$.ajax({
+                            type: 'POST',
+                            url: "/chefs/login",
+                            contentType: "application/json",
+                            dataType: "json",
+                            data:  JSON.stringify(self.serialize())
+                        });
+
+            promise.success(function(response){
                 Ember.run(function(){
-                    self.success();
+                    self.success(response['username']);
                 });
             });
             promise.fail(function(){
@@ -38,9 +44,11 @@ SocialChef.LoginController = Ember.ObjectController.extend({
         }
     },
 
-    success: function() {
+    success: function(username) {
         this.reset();
-        this.transitionToRoute('index');
+        var controller = SocialChef.__container__.lookup("controller:application");
+        controller.send('loggedIn', username);
+        this.transitionToRoute('user', username);
     },
 
     failure: function() {
@@ -60,5 +68,12 @@ SocialChef.LoginController = Ember.ObjectController.extend({
             isProcessing: false,
             isSlowConnection: false
         });
+    },
+
+    serialize: function() {
+        return {
+            username: this.get('username'),
+            password: this.get('password')
+        };
     }
 });
