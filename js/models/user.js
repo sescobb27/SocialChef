@@ -6,13 +6,10 @@ SocialChef.User = Ember.Object.extend({
   lastName: "",
   userName: "",
   rate: 0.0,
-  address: "",
   telephone_number: "",
   email: "",
   picture: "",
   products: [],
-  createdAt: null,
-  password: "",
   // ==========================================================================
   // END ATTRIBUTES
   // ==========================================================================
