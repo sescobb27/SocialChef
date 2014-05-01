@@ -8,8 +8,11 @@ SocialChef.RegisterController = Ember.ObjectController.extend({
     email: '',
     password: '',
     confirm_password: '',
-    invalidPass: false,
+    address: '',
+    cellphone: '',
+    telephone: '',
     isProcessing: false,
+    errors: Ember.A([]),
     // ==========================================================================
     // END PROPERTIES
     // ==========================================================================
@@ -23,22 +26,51 @@ SocialChef.RegisterController = Ember.ObjectController.extend({
             var email = $.trim(this.get('email'));
             var pass = $.trim(this.get('password'));
             var confirm = $.trim(this.get('confirm_password'));
+            var address = $.trim(this.get('address'));
+            var cellphone = $.trim(this.get('cellphone'));
+            var telephone = $.trim(this.get('telephone'));
+            var errors = this.get('errors');
+            errors.clear();
             if (!this.empty(pass) && !this.empty(confirm)) {
-                if (pass === confirm) {
-                    this.set('invalidPass', false);
-                } else {
-                    this.set('invalidPass', true);
-                    return false;
+                if (pass !== confirm) {
+                    errors.pushObject
+                        ("La contraseña y la confirmación de la contraseña no concuerdan");
                 }
             } else {
-                this.set('invalidPass', true);
+                errors.pushObject
+                    ("La contraseña y la confirmación de la contraseña no pueden estar vacias");
+            }
+
+            if (this.empty(name)) {
+                errors.pushObject("El Nombre No puede estar vacio");
+            }
+
+            if (this.empty(last_name)) {
+                errors.pushObject("El Campo Apellido No puede estar vacio");
+            }
+
+            if (this.empty(username)) {
+                errors.pushObject("El Campo Usuario No puede estar vacio");
+            }
+
+            if (this.empty(email)) {
+                errors.pushObject("El Campo Correo No puede estar vacio");
+            }
+
+            if (this.empty(address)) {
+                errors.pushObject("El Campo Dirección No puede estar vacio");
+            }
+            if (this.empty(cellphone)) {
+                errors.pushObject("El Campo Celular No puede estar vacio");
+            }
+            if (this.empty(telephone)) {
+                errors.pushObject("El Campo Telefono No puede estar vacio");
+            }
+
+            if (this.get('errors').length !== 0) {
                 this.set('isProcessing', false);
                 return false;
-            }
-            if (!this.empty(name) &&
-                    !this.empty(last_name) &&
-                    !this.empty(username) &&
-                    !this.empty(email)) {
+            } else {
                 this.send('register');
             }
         },
@@ -84,5 +116,6 @@ SocialChef.RegisterController = Ember.ObjectController.extend({
     },
     failure: function(response) {
         this.set('isProcessing', false);
+        this.get('errors').pushObject(response.errors);
     }
 });

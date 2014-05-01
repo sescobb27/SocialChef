@@ -6,8 +6,20 @@ SocialChef.UserProductsAddController = Ember.ObjectController.extend({
   product_image: '',
   isProcessing: false,
   file: null,
+  p_categories: Ember.A([]),
+  p_locations: Ember.A([]),
+  categories: Ember.A([]),
+  locations: Ember.A([]),
   errors: Ember.A([]),
+
+
+// ==========================================================================
+// START ACTIONS
+// ==========================================================================
   actions: {
+      // ========================================================================
+      // START ACTION VALIDATE
+      // ========================================================================
       validate: function() {
           this.set('isProcessing', true);
           var name = this.get('product_name');
@@ -29,6 +41,14 @@ SocialChef.UserProductsAddController = Ember.ObjectController.extend({
           }
           this.send('addProduct');
       },
+      // ======================================================================
+      // END ACTION VALIDATE
+      // ======================================================================
+
+
+      // ======================================================================
+      // START ACTION CHANGE
+      // ======================================================================
       change: function(event) {
           var reader = new FileReader();
           var context = this;
@@ -41,11 +61,73 @@ SocialChef.UserProductsAddController = Ember.ObjectController.extend({
               });
           };
           return reader.readAsDataURL(event.target.files[0]);
+      },
+      // ======================================================================
+      // END ACTION CHANGE
+      // ======================================================================
+
+
+      // ======================================================================
+      // START ACTION ADD_CATEGORY
+      // ======================================================================
+      addCategory: function(category) {
+          var p_info = this.get('p_categories');
+          var btn = $('#'+category+'');
+          if (p_info.contains(category)) {
+              p_info.removeObject(category);
+              btn.disabled = false;
+              btn.removeClass('btn-success').addClass('btn-info');
+          } else {
+              p_info.pushObject(category);
+              btn.disabled = true;
+              btn.removeClass('btn-info').addClass('btn-success');
+          }
+      },
+      // ======================================================================
+      // END ACTION ADD_CATEGORY
+      // ======================================================================
+
+
+      // ======================================================================
+      // START ACTION ADD_LOCATION
+      // ======================================================================
+      addLocation: function(location) {
+            var p_info = this.get('p_locations');
+            var btn = $('#'+location+'');
+            if (p_info.contains(location)) {
+                p_info.removeObject(location);
+                btn.disabled = false;
+                btn.removeClass('btn-success').addClass('btn-info');
+            } else {
+                p_info.pushObject(location);
+                btn.disabled = true;
+                btn.removeClass('btn-info').addClass('btn-success');
+            }
       }
+      // ======================================================================
+      // END ACTION ADD_LOCATION
+      // ======================================================================
+
   },
+// ==========================================================================
+// END ACTIONS
+// ==========================================================================
+
+
+// ==========================================================================
+// START FUNCTION EMPTY
+// ==========================================================================
   empty: function(obj) {
       return obj === "" || obj === null;
   },
+// ==========================================================================
+// END FUNCTION EMPTY
+// ==========================================================================
+
+
+  // ==========================================================================
+  // START FUNCTION ADD_PRODUCT
+  // ==========================================================================
   addProduct: function() {
       var self = this;
       var imageData = new FormData();
@@ -53,6 +135,8 @@ SocialChef.UserProductsAddController = Ember.ObjectController.extend({
       imageData.append('productname', self.get('product_name'));
       imageData.append('price', self.get('price'));
       imageData.append('image', this.get('product_image'), 'file');
+      imageData.append('categories', self.get('p_categories'));
+      imageData.append('locations', self.get('p_locations'));
       var promise = Ember.$.ajax({
           type: 'POST',
           url: "/chefs/addproduct",
@@ -71,10 +155,93 @@ SocialChef.UserProductsAddController = Ember.ObjectController.extend({
           });
        });
   },
+  // ==========================================================================
+  // END FUNCTION ADD_PRODUCT
+  // ==========================================================================
+
+
+  // ==========================================================================
+  // START FUNCTION SUCCESS
+  // ==========================================================================
   success: function() {
       this.transitionToRoute('user', this.get('application').get('username'));
       this.reset();
+  },
+  // ==========================================================================
+  // END FUNCTION SUCCESS
+  // ==========================================================================
+
+
+  // ==========================================================================
+  // START FUNCTION GET_CATEGORIES
+  // ==========================================================================
+  getCategories: function() {
+      var self = this;
+      var categories_promise = Ember.$.getJSON("/categories");
+      categories_promise.success(function(response){
+          Ember.run(function(){
+              self.addToArray("categories", response);
+          });
+      });
+      categories_promise.fail(function(response){
+          Ember.run(function(){
+              self.failure(response);
+          });
+       });
+  },
+  // ==========================================================================
+  // END FUNCTION GET_CATEGORIES
+  // ==========================================================================
+
+
+  // ==========================================================================
+  // START FUNCTION GET_LOCATIONS
+  // ==========================================================================
+  getLocations: function() {
+      var self = this;
+      var locations_promise = Ember.$.getJSON("/locations");
+      locations_promise.success(function(response){
+          Ember.run(function(){
+              self.addToArray("locations", response);
+          });
+      });
+      locations_promise.fail(function(response){
+          Ember.run(function(){
+              self.failure(response);
+          });
+       });
+  },
+  // ==========================================================================
+  // END FUNCTION GET_LOCATIONS
+  // ==========================================================================
+
+
+  // ==========================================================================
+  // START FUNCTION ADD_TO_ARRAY
+  // ==========================================================================
+  addToArray: function(array_type, response) {
+      var context = this;
+      $.each(response, function(index, val) {
+          context.get(array_type).pushObject(val.name);
+      });
+  },
+  // ==========================================================================
+  // END FUNCTION ADD_TO_ARRAY
+  // ==========================================================================
+
+
+  // ==========================================================================
+  // START FUNCTION FAILURE
+  // ==========================================================================
+  failure: function(response) {
+    var context = this;
+    $.each(response, function(index, val) {
+        context.get('errors').pushObject(val);
+    });
   }
+  // ==========================================================================
+  // END FUNCTION FAILURE
+  // ==========================================================================
 });
 
 SocialChef.UserProductsEditController = Ember.ObjectController.extend({
