@@ -8,6 +8,19 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   
 });
 
+Ember.TEMPLATES["components/auth-panel"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
+  var buffer = '', escapeExpression=this.escapeExpression;
+
+
+  data.buffer.push("\n<div class=\"container-fluid\">\n    <div class=\"row\">\n        <div class=\"col-md-offset-4 col-lg-offset-4 col-md-4 col-lg-4\">\n            <button id='modal-launcher'\n                class=\"btn btn-primary btn-lg\"\n                data-toggle=\"modal\"\n                data-target=\"#login-modal\">\n                Sign Up\n            </button>\n        </div>\n    </div>\n</div>\n\n<div class=\"modal fade\"\n    id=\"login-modal\" tabindex=\"-1\"\n    role=\"dialog\"\n    aria-labelledby=\"myModalLabel\"\n    aria-hidden=\"true\">\n    <div class=\"modal-dialog\">\n        <div class=\"modal-content\">\n            <div class=\"modal-header login_modal_header\">\n                <button type=\"button\" class=\"close\" data-dismiss=\"modal\"\n                    aria-hidden=\"true\">&times;</button>\n                <h2 class=\"modal-title\" id=\"myModalLabel\">\n                    Login to Your Account\n                </h2>\n            </div>\n            <div class=\"modal-body login-modal\">\n              <p>Login Description</p>\n              <br/>\n              <div class=\"clearfix\"></div>\n              <div id='social-icons-conatainer'>\n                  <div class='modal-body-left'>\n\n                      <div class=\"form-group\">\n                          <input type=\"text\"\n                              id=\"username\"\n                              placeholder=\"Enter your name\"\n                              value=\"\"\n                              class=\"form-control login-field\">\n                          <i class=\"fa fa-user login-field-icon\"></i>\n                      </div>\n\n                      <div class=\"form-group\">\n                          <input type=\"password\"\n                              id=\"login-pass\"\n                              placeholder=\"Password\"\n                              value=\"\"\n                              class=\"form-control login-field\">\n                          <i class=\"fa fa-lock login-field-icon\"></i>\n                      </div>\n\n                      <a href=\"#\" class=\"btn btn-success modal-login-btn\">Login</a>\n                      <a href=\"#\" class=\"login-link text-center\">Lost your password?</a>\n                  </div>\n\n                  <div class='modal-body-right'>\n                      <div class=\"modal-social-icons\">\n                          <a href='#' class=\"btn btn-default facebook\">\n                              <i class=\"fa fa-facebook modal-icons\"></i>\n                              Sign In with Facebook\n                          </a>\n                          <button class=\"btn btn-default twitter\"\n                              ");
+  data.buffer.push(escapeExpression(helpers.action.call(depth0, "signIn", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["STRING"],data:data})));
+  data.buffer.push(">\n                              <i class=\"fa fa-twitter modal-icons\"></i>\n                              Sign In with Twitter\n                          </button>\n                          <a href='#' class=\"btn btn-default google\">\n                              <i class=\"fa fa-google-plus modal-icons\"></i>\n                              Sign In with Google\n                          </a>\n                      </div>\n                  </div>\n                  <div id='center-line'> OR </div>\n              </div>\n\n              <div class=\"clearfix\"></div>\n              <div class=\"form-group modal-register-btn\">\n                  <button class=\"btn btn-default\">\n                      New User Please Register\n                  </button>\n              </div>\n            </div>\n            <div class=\"clearfix\"></div>\n            <div class=\"modal-footer login_modal_footer\">\n            </div>\n        </div>\n      </div>\n</div>");
+  return buffer;
+  
+});
+
 Ember.TEMPLATES["components/left-panel"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
@@ -91,19 +104,22 @@ function program5(depth0,data) {
 
 function program7(depth0,data) {
   
-  
-  data.buffer.push(" Login ");
-  }
-
-function program9(depth0,data) {
-  
   var buffer = '', stack1, helper, options;
   data.buffer.push("\n              <li> ");
+  stack1 = (helper = helpers['link-to'] || (depth0 && depth0['link-to']),options={hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(8, program8, data),contexts:[depth0,depth0],types:["STRING","ID"],data:data},helper ? helper.call(depth0, "logout", "username", options) : helperMissing.call(depth0, "link-to", "logout", "username", options));
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push(" </li>\n              <li> ");
   stack1 = (helper = helpers['link-to'] || (depth0 && depth0['link-to']),options={hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(10, program10, data),contexts:[depth0,depth0],types:["STRING","ID"],data:data},helper ? helper.call(depth0, "user", "username", options) : helperMissing.call(depth0, "link-to", "user", "username", options));
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push(" </li>\n          ");
   return buffer;
   }
+function program8(depth0,data) {
+  
+  
+  data.buffer.push(" Cerrar Sesion ");
+  }
+
 function program10(depth0,data) {
   
   var buffer = '', stack1;
@@ -118,7 +134,10 @@ function program12(depth0,data) {
   
   var buffer = '', stack1, helper, options;
   data.buffer.push("\n              <li> ");
-  stack1 = (helper = helpers['link-to'] || (depth0 && depth0['link-to']),options={hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(13, program13, data),contexts:[depth0],types:["STRING"],data:data},helper ? helper.call(depth0, "register", options) : helperMissing.call(depth0, "link-to", "register", options));
+  stack1 = (helper = helpers['link-to'] || (depth0 && depth0['link-to']),options={hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(13, program13, data),contexts:[depth0],types:["STRING"],data:data},helper ? helper.call(depth0, "login", options) : helperMissing.call(depth0, "link-to", "login", options));
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push(" </li>\n              <li> ");
+  stack1 = (helper = helpers['link-to'] || (depth0 && depth0['link-to']),options={hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(15, program15, data),contexts:[depth0],types:["STRING"],data:data},helper ? helper.call(depth0, "register", options) : helperMissing.call(depth0, "link-to", "register", options));
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push(" </li>\n          ");
   return buffer;
@@ -126,10 +145,16 @@ function program12(depth0,data) {
 function program13(depth0,data) {
   
   
+  data.buffer.push(" Iniciar Sesion ");
+  }
+
+function program15(depth0,data) {
+  
+  
   data.buffer.push(" Register ");
   }
 
-  data.buffer.push("<nav class=\"navbar navbar-inverse navbar-fixed-top\" role=\"navigation\">\n  <div class=\"container\">\n    <div class=\"navbar-header\">\n      <button type=\"button\"\n          class=\"navbar-toggle\"\n          data-toggle=\"collapse\"\n          data-target=\".navbar-ex1-collapse\">\n          <span class=\"sr-only\">Toggle navigation</span>\n          <span class=\"icon-bar\"></span>\n          <span class=\"icon-bar\"></span>\n          <span class=\"icon-bar\"></span>\n      </button>\n      ");
+  data.buffer.push("<nav class=\"navbar navbar-inverse navbar-fixed-top\" role=\"navigation\">\n  <div class=\"container\">\n    <div class=\"navbar-header\">\n      ");
   stack1 = (helper = helpers['link-to'] || (depth0 && depth0['link-to']),options={hash:{
     'class': ("navbar-brand"),
     'id': ("appname")
@@ -141,17 +166,17 @@ function program13(depth0,data) {
   data.buffer.push(" </li>\n          <li> ");
   stack1 = (helper = helpers['link-to'] || (depth0 && depth0['link-to']),options={hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(5, program5, data),contexts:[depth0],types:["STRING"],data:data},helper ? helper.call(depth0, "about", options) : helperMissing.call(depth0, "link-to", "about", options));
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push(" </li>\n          <li> ");
-  stack1 = (helper = helpers['link-to'] || (depth0 && depth0['link-to']),options={hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(7, program7, data),contexts:[depth0],types:["STRING"],data:data},helper ? helper.call(depth0, "login", options) : helperMissing.call(depth0, "link-to", "login", options));
-  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push(" </li>\n          ");
-  stack1 = helpers['if'].call(depth0, "username", {hash:{},hashTypes:{},hashContexts:{},inverse:self.program(12, program12, data),fn:self.program(9, program9, data),contexts:[depth0],types:["ID"],data:data});
+  stack1 = helpers['if'].call(depth0, "username", {hash:{},hashTypes:{},hashContexts:{},inverse:self.program(12, program12, data),fn:self.program(7, program7, data),contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push("\n      </ul>\n    </nav>\n  </nav>\n</nav>\n<div class=\"container\">\n    <div><h1>SocialChef</h1></div>\n    <div class=\"row\">\n      ");
   data.buffer.push(escapeExpression((helper = helpers['products-search'] || (depth0 && depth0['products-search']),options={hash:{
     'search': ("search")
   },hashTypes:{'search': "STRING"},hashContexts:{'search': depth0},contexts:[],types:[],data:data},helper ? helper.call(depth0, options) : helperMissing.call(depth0, "products-search", options))));
   data.buffer.push("\n      <div class=\"col-md-3\">\n          ");
+  stack1 = helpers._triageMustache.call(depth0, "auth-panel", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("\n          ");
   stack1 = helpers._triageMustache.call(depth0, "left-panel", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push("\n      </div>\n      <div class=\"container\">\n          <div class=\"col-md-9\">\n            ");
