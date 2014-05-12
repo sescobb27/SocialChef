@@ -15,8 +15,9 @@ SocialChef.LeftPanelComponent = Ember.Component.extend({
     classNames: [],
     categories: Ember.A([]),
     locations: Ember.A([]),
+
     didInsertElement: function() {
-      this.send('get') ;
+        this.send('get') ;
     },
 
     actions: {
@@ -62,38 +63,4 @@ SocialChef.LeftPanelComponent = Ember.Component.extend({
 
     failure: function(response) {
     },
-});
-
-SocialChef.AuthPanelComponent = Ember.Component.extend({
-  tagName: '',
-  classNames: [],
-  providers: Ember.A([]),
-  didInsertElement: function() {
-      this.get('providers').pushObjects(["Twitter", "Facebook"]);
-  },
-
-  actions: {
-      signIn: function(provider) {
-          var self = this;
-          var promise = Ember.$.getJSON("/oauthtwitter");
-          promise.success(function(response){
-              Ember.run(function(){
-                  window.open(response.url, '_self');
-              });
-          });
-          promise.fail(function(response){
-              Ember.run(function(){
-                  console.log(response);
-              });
-           });
-      }
-  },
-
-  twitterSuccess: function(response) {
-      console.log(response);
-  },
-  generateNonce: function() {
-  },
-  getAccessToken: function() {
-  }
 });
