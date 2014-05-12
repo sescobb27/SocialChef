@@ -87,18 +87,6 @@ SocialChef.SearchResultsRoute = Ember.Route.extend({
   }
 });
 
-
-SocialChef.SearchController = Ember.ArrayController.extend({
-    query: '',
-    category: ''
-});
-
-SocialChef.SearchResultsController = Ember.ArrayController.extend({
-    query: '',
-    category: ''
-});
-
-
 SocialChef.ProductsRoute = Ember.Route.extend({
     setupController: function(productsController) {
         console.log("Fetching Products");
@@ -184,6 +172,22 @@ SocialChef.LogoutRoute = Ember.Route.extend({
   setupController: function(controller, model) {
       // Send Logout Action
       // TO-DO
+      var promise = Ember.$.ajax({
+          type: 'POST',
+          url: "/chefs/logout"
+      });
+      promise.success(function(){
+          Ember.run(function(){
+              var app_controller =
+                  SocialChef.__container__.lookup("controller:application");
+                  app_controller.set('username', '');
+          });
+      });
+      promise.fail(function(response){
+          Ember.run(function(){
+              self.failure(response);
+          });
+      });
       this.transitionToRoute("index");
   },
   // renderTemplate: function() {},
@@ -198,14 +202,7 @@ SocialChef.LogoutRoute = Ember.Route.extend({
 SocialChef.RegisterRoute = Ember.Route.extend({
   // activate: function() {},
   // deactivate: function() {},
-  setupController: function(controller, model) {
-      if (model.username !== null) {
-          controller.set('username', model.username);
-      }
-      if (model.name !== null) {
-          controller.set('name', model.name);
-      }
-  },
+  // setupController: function(controller, model) {},
   // renderTemplate: function() {},
   // beforeModel: function() {},
   // afterModel: function() {},
