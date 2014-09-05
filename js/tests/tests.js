@@ -29,75 +29,66 @@ module("Ajax tests", {
     }
 });
 
-var products = [{
-        id: 1,
-        name: 'Plato 1',
-        price: 9900,
-        category: 'Pasta',
-        description: 'Descripcion del plato 1.',
-        cheff:'Pablo',
-        image: 'images/gourmet1.jpg'
-    }, {
-        id: 2,
-        name: 'Plato 2',
-        price: 249,
-        category: 'Carne',
-        description: 'Descripcion del plato 2.',
-        cheff:'Pedro',
-        image: 'images/gourmet2.jpg'
-    }, {
-        id: 3,
-        name: 'Plato 3',
-        price: 499,
-        category: 'Postre',
-        description: 'Descripcion del plato 3.',
-        cheff:'Jacinto',
-        image: 'images/gourmet3.jpg'
-    }
+var locations = [
+        {name: "Poblado"},
+        {name: "Laureles"},
+        {name: "Envigado"},
+        {name: "Caldas"},
+        {name: "Sabaneta"},
+        {name: "Colores"},
+        {name: "Estadio"},
+        {name: "Calazans"},
+        {name: "Bello"},
+        {name: "Boston"},
+        {name: "Prado Centro"},
+        {name: "Itagui"},
+        {name: "Belen"},
+        {name: "Guayabal"}
 ];
 
-test('I should by able to search products by name', function () {
-    server.respondWith("get", "http://localhost:8080/products/findby");
+var categories = [
+        {name: "Pasta"},
+        {name: "Carne"},
+        {name: "Pollo"},
+        {name: "Ensalada"},
+        {name: "Desayuno"},
+        {name: "Almuerzo"},
+        {name: "Postre"},
+        {name: "Sopa"},
+        {name: "Vegetariana"},
+        {name: "Menu Infantil"},
+        {name: "Comida Rapida"},
+        {name: "Almuerzo para 2"},
+        {name: "Desayuno para 2"},
+        {name: "Comida para 2"},
+        {name: "Ensalada de Frutas"},
+        {name: "Gourmet"}
+];
+
+test('I should see locations and categories updated asynchronously', function () {
+    // Responds to all requests to given URL
+    // server.respondWith(url, response);
+    server.respondWith("/categories", JSON.stringify(categories));
+    server.respondWith("/locations", JSON.stringify(locations));
     visit("/")
-      .fillIn('input#products-search', "Plato 1")
-      .click('#search-btn')
       .then(function () {
-          equal(server.requests.length, 3, "");
-          equal(server.requests[2].url, "/products/findby?search_value=Plato+1", "");
+          equal(server.requests.length, 2, "");
+          equal(server.requests[0].url, "/categories");
+          equal(server.requests[1].url, "/locations");
+          equal($('.locations ul.list-group li').length, 14);
+          equal($('.categories ul.list-group li').length, 16);
       });
 });
 
-test('I should by able to search products by category', function () {
-  server.respondWith("get", "http://localhost:8080/products/findby");
-  visit("/")
-    .fillIn('input#products-search', "Carne")
-    .click('#search-btn')
-    .then(function () {
-        equal(server.requests.length, 3, "");
-        equal(server.requests[2].url, "/products/findby?search_value=Carne", "");
-    });
-});
-
-test('I should by able to search products by chef', function () {
-  server.respondWith("get", "http://localhost:8080/products/findby");
-  visit("/")
-    .fillIn('input#products-search', "Jacinto")
-    .click('#search-btn')
-    .then(function () {
-        equal(server.requests.length, 3, "");
-        equal(server.requests[2].url, "/products/findby?search_value=Jacinto", "");
-    });
-});
-
 test('I should see an error when submit an empty login', function() {
-    server.respondWith("post", "http://localhost:8080/chefs/login");
+    server.respondWith("post", "/chefs/login");
     visit('/login')
     .fillIn("input#user_name","")
     .fillIn("input#user_password","")
     .click('#login_btn')
     .then(function() {
-        equal(server.requests.length, 3, "");
-        equal(server.requests[2].url, "/chefs/login", "");
+        exists('#error_msg');
+        equal($('div#error_msg').text(), 'Nombre de Usuario o Contraseña Invalidos.');
     });
 });
 
@@ -112,10 +103,6 @@ module("Integration tests", {
         // reset the application state between each test
         SocialChef.reset();
     }
-});
-
-test("I should see  the App Name", function() {
-    visit("/").exists("#appname");
 });
 
 test('I should see a carousel in the index page',function() {
